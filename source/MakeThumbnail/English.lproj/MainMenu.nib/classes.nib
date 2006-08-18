@@ -1,0 +1,30 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {orderFrontAboutPanel = id; }; 
+            CLASS = AboutPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {aboutPanel = NSPanel; aboutPanelImageView = NSImageView; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                loadImage = id; 
+                newImageDraggedIntoImageView = id; 
+                removeCustomIcon = id; 
+                saveImageWithThumbnail = id; 
+                saveThumbnailToIcnsFile = id; 
+            }; 
+            CLASS = MainController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                imageInterpolationPopUpButton = NSPopUpButton; 
+                savePanelAccessoryView = id; 
+                thumbnailImageView = NSImageView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

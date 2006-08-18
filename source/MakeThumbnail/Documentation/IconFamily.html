@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>IconFamily class</title>
+	<link rel="stylesheet" href="classdoc.css" type="text/css" />
+</head>
+<body>
+
+<div id="content">
+
+<!-- begin heading -->
+
+<h1 id="classtitle">IconFamily</h1>
+
+<div id="classheading">
+
+	<div class="headingxref">
+		<div class="xreflabel">Inherits from:</div>
+		<div class="xrefvalue"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/NSObject.html#//apple_ref/occ/cl/NSObject">NSObject</a></div>
+	</div>
+
+	<div class="headingxref">
+		<div class="xreflabel">Conforms to:</div>
+		<div class="xrefvalue"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Protocols/NSObject.html#//apple_ref/occ/intf/NSObject">NSObject (NSObject)</a></div>
+	</div>
+
+	<div class="headingxref">
+		<div class="xreflabel">Declared in:</div>
+		<div class="xrefvalue">IconFamily.h</div>
+	</div>
+
+</div>
+
+<!-- end heading -->
+
+<!-- begin class description -->
+
+<div id="classdescription">
+
+<p>IconFamily is a Cocoa/Objective-C wrapper for the Mac OS X Carbon API's
+"icon family" data type.  Its main purpose is to enable Cocoa applications
+to easily create custom file icons from <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a> instances, and thus take
+advantage of Mac OS X's new 128x128 RGBA "thumbnail" icon format to provide
+richly detailed thumbnail previews of the files' contents.</p>
+
+<p>Using IconFamily, this becomes as simple as:</p>
+
+<div class="codeblock">
+id iconFamily = [IconFamily iconFamilyWithThumbnailsOfImage:anImage];<br />
+[iconFamily setAsCustomIconForFile:anExistingFile];
+</div>
+
+<p>You can also write an icon family to an .icns file using the <a href="#writeToFile_">-writeToFile:</a> method.</p>
+
+</div>
+
+<!-- end class description -->
+
+
+<!-- Method Types -->
+
+<div class="methods">
+<h2>Method Types</h2>
+
+<div class="methodgroup">
+	<div class="methodgroupname">Creating an IconFamily</div>
+	<div class="methodsingroup">
+	<a href="#C_iconFamily">+ iconFamily</a><br />
+	<a href="#C_iconFamilyWithContentsOfFile_">+ iconFamilyWithContentsOfFile:</a><br />
+	<a href="#C_iconFamilyWithIconFamilyHandle_">+ iconFamilyWithIconFamilyHandle:</a><br />
+	<a href="#C_iconFamilyWithIconOfFile_">+ iconFamilyWithIconOfFile:</a><br />
+        <a href="#C_iconFamilyWithScrap">+ iconFamilyWithScrap</a><br />
+	<a href="#C_iconFamilyWithSystemIcon_">+ iconFamilyWithSystemIcon:</a><br />
+	<a href="#C_iconFamilyWithThumbnailsOfImage_">+ iconFamilyWithThumbnailsOfImage:</a><br />
+	<a href="#C_iconFamilyWithThumbnailsOfImage_usingImageInterpolation_">+ iconFamilyWithThumbnailsOfImage:usingImageInterpolation:</a><br />
+	<a href="#init">- init</a><br />
+	<a href="#initWithContentsOfFile_">- initWithContentsOfFile:</a><br />
+	<a href="#initWithIconFamilyHandle_">- initWithIconFamilyHandle:</a><br />
+	<a href="#initWithIconOfFile_">- initWithIconOfFile:</a><br />
+        <a href="#initWithScrap">- initWithScrap</a><br />
+	<a href="#initWithSystemIcon_">- initWithSystemIcon:</a><br />
+	<a href="#initWithThumbnailsOfImage_">- initWithThumbnailsOfImage:</a><br />
+	<a href="#initWithThumbnailsOfImage_usingImageInterpolation_">- initWithThumbnailsOfImage:usingImageInterpolation:</a>
+	</div>
+</div>
+
+<div class="methodgroup">
+	<div class="methodgroupname">Getting an IconFamily's elements</div>
+	<div class="methodsingroup">
+	<a href="#bitmapImageRepWithAlphaForIconFamilyElement_">- bitmapImageRepWithAlphaForIconFamilyElement:</a><br />
+	<a href="#imageWithAllReps">- imageWithAllReps</a>
+	</div>
+</div>
+
+<div class="methodgroup">
+	<div class="methodgroupname">Setting an IconFamily's elements</div>
+	<div class="methodsingroup">
+	<a href="#setIconFamilyElement_fromBitmapImageRep_">- setIconFamilyElement:fromBitmapImageRep:</a>
+	</div>
+</div>
+
+<div class="methodgroup">
+	<div class="methodgroupname">Assigning and removing custom file icons</div>
+	<div class="methodsingroup">
+	<a href="#C_removeCustomIconFromFile_">+ removeCustomIconFromFile:</a><br />
+	<a href="#setAsCustomIconForDirectory_">- setAsCustomIconForDirectory:</a><br />
+	<a href="#setAsCustomIconForDirectory_withCompatibility_">- setAsCustomIconForDirectory:withCompatibility:</a><br />
+	<a href="#setAsCustomIconForFile_">- setAsCustomIconForFile:</a><br />
+	<a href="#setAsCustomIconForFile_withCompatibility_">- setAsCustomIconForFile:withCompatibility:</a>
+	</div>
+</div>
+
+<div class="methodgroup">
+	<div class="methodgroupname">Writing .icns files</div>
+	<div class="methodsingroup">
+	<a href="#writeToFile_">- writeToFile:</a>
+	</div>
+</div>
+
+<div class="methodgroup">
+        <div class="methodgroupname">Interfacing with the pasteboard (Carbon scrap manager)</div>
+        <div class="methodsingroup">
+        <a href="#C_canInitWithScrap">+ canInitWithScrap</a><br />
+        <a href="#C_iconFamilyWithScrap">+ iconFamilyWithScrap</a><br />
+        <a href="#initWithScrap">- initWithScrap</a><br />
+        <a href="#putOnScrap">- putOnScrap</a><br />
+        </div>
+</div>
+
+</div>
+
+
+<!-- Class Methods -->
+
+<div class="methods">
+<h2>Class Methods</h2>
+
+<a name="C_canInitWithScrap"></a>
+<div class="methoddoc">
+<div class="methodname">+ (BOOL) canInitWithScrap</div>
+<p>Returns <span class="const">YES</span> if an IconFamily can be created from 'icns' data on the pasteboard, <span class="const">NO</span> if no such data is present.</p>
+</div>
+
+<a name="C_iconFamily"></a>
+<div class="methoddoc">
+<div class="methodname">+ (IconFamily*) iconFamily</div>
+<p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#init">-init</a></span> method.</p>
+</div>
+
+<a name="C_iconFamilyWithContentsOfFile_"></a>
+<div class="methoddoc">
+<div class="methodname">+ (IconFamily*) iconFamilyWithContentsOfFile:(NSString*)path</div>
+<p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithContentsOfFile_">-initWithContentsOfFile:</a></span> method.</p>
+</div>
+
+<a name="C_iconFamilyWithIconFamilyHandle_"></a>
+<div class="methoddoc">
+<div class="methodname">+ (IconFamily*) iconFamilyWithIconFamilyHandle:(IconFamilyHandle)hNewIconFamily</div>
+<p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithIconFamilyHandle_">-initWithIconFamilyHandle:</a></span> method.</p>
+</div>
+
+<a name="C_iconFamilyWithIconOfFile_"></a>
+<div class="methoddoc">
+<div class="methodname">+ (IconFamily*) iconFamilyWithIconOfFile:(NSString*)path</div>
+<p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithIconOfFile_">-initWithIconOfFile:</a></span> method.</p>
+</div>
+
+<a name="C_iconFamilyWithScrap"></a>
+<div class="methoddoc">
+<div class="methodname">+ (IconFamily*) iconFamilyWithScrap</div>
+<p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithScrap">-initWithScrap</a></span> method.</p>
+</div>
+
+<a name="C_iconFamilyWithSystemIcon_"></a>
+<div class="methoddoc">
+<div class="methodname">+ (IconFamily*) iconFamilyWithSystemIcon:(int)fourByteCode</div>
+<p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithSystemIcon_">-initWithSystemIcon:</a></span> method.</p>
+</div>
+
+<a name="C_iconFamilyWithThumbnailsOfImage_"></a>
+<div class="methoddoc">
+<div class="methodname">+ (IconFamily*) iconFamilyWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*)image</div>
+<p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithThumbnailsOfImage_">-initWithThumbnailsOfImage:</a></span> method.</p>
+</div>
+
+<a name="C_iconFamilyWithThumbnailsOfImage_usingImageInterpolation_"></a>
+<div class="methoddoc">
+<div class="methodname">+ (IconFamily*) iconFamilyWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation</div>
+<p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithThumbnailsOfImage_usingImageInterpolation_">-initWithThumbnailsOfImage:usingImageInterpolation:</a></span> method.</p>
+</div>
+
+<a name="C_removeCustomIconFromFile_"></a>
+<div class="methoddoc">
+<div class="methodname">+ (BOOL) removeCustomIconFromFile:(NSString*)path</div>
+<p>Removes the custom icon (if any) from the specified file's resource fork, and clears the necessary Finder bits for the file.</p>
+</div>
+
+</div>
+
+
+<!-- Instance Methods -->
+
+<div class="methods">
+<h2>Instance Methods</h2>
+
+<a name="bitmapImageRepWithAlphaForIconFamilyElement_"></a>
+<div class="methoddoc">
+<div class="methodname">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a>*) bitmapImageRepWithAlphaForIconFamilyElement:(OSType)elementType</div>
+<p>Gets the image data for one of the icon family's elements as a new, 32-bit
+RGBA <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a>.  The specified <span class="arg">elementType</span> should be one of
+<span class="const">kThumbnail32BitData</span>, <span class="const">kLarge32BitData</span>, or <span class="const">kSmall32BitData</span>.</p>
+
+<p>The returned <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a> will have the corresponding 8-bit mask data
+in its alpha channel, or a fully opaque alpha channel if the icon family
+has no 8-bit mask data for the specified alpha channel.</p>
+
+<p>Returns <span class="const">nil</span> if the requested element cannot be retrieved (e.g. if the icon family has no such <span class="const">32BitData</span> element).</p>
+</div>
+
+
+<a name="imageWithAllReps"></a>
+<div class="methoddoc">
+<div class="methodname">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*) imageWithAllReps</div>
+<p>Creates and returns an <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a> that contains the icon family's various elements as its <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImageRep.html#//apple_ref/occ/cl/NSImageRep">NSImageRep</a>s.</p>
+</div>
+
+
+<a name="init"></a>
+<div class="methoddoc">
+<div class="methodname">- init</div>
+<p>Initializes the receiver as a new, empty IconFamily.  This is IconFamily's designated initializer method.</p>
+</div>
+
+
+<a name="initWithContentsOfFile_"></a>
+<div class="methoddoc">
+<div class="methodname">- initWithContentsOfFile:(NSString*)path</div>
+<p>Initializes an IconFamily by loading the contents of an .icns file.</p>
+</div>
+
+
+<a name="initWithIconFamilyHandle_"></a>
+<div class="methoddoc">
+<div class="methodname">- initWithIconFamilyHandle:(IconFamilyHandle)hNewIconFamily</div>
+<p>Initializes an IconFamily from an existing Carbon IconFamilyHandle.</p>
+</div>
+
+
+<a name="initWithIconOfFile_"></a>
+<div class="methoddoc">
+<div class="methodname">- initWithIconOfFile:(NSString*)path</div>
+<p>Initializes an IconFamily by loading the Finder icon that's assigned to a file.</p>
+</div>
+
+
+<a name="initWithScrap"></a>
+<div class="methoddoc">
+<div class="methodname">- initWithScrap</div>
+<p>Initializes an IconFamily from 'icns' data on the pasteboard.  Use <span class="methodname"><a href="#C_canInitWithScrap">+canInitWithScrap</a></span> to determine whether such data is present.</p>
+</div>
+
+
+<a name="initWithSystemIcon_"></a>
+<div class="methoddoc">
+<div class="methodname">- initWithSystemIcon:(int)fourByteCode</div>
+<p>Initializes an IconFamily by referencing a standard system icon.</p>
+</div>
+
+
+<a name="initWithThumbnailsOfImage_"></a>
+<div class="methoddoc">
+<div class="methodname">- initWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*)image</div>
+<p>Initializes an IconFamily by creating its elements from a resampled
+<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>.  This is equivalent to invoking <span class="methodname">-initWithThumbnailsOfImage:usingImageInterpolation:</span> with an <span class="arg">imageInterpolation</span> parameter of <span class="const">NSImageInterpolationHigh</span>, which
+produces highly smoothed thumbnails.</p>
+</div>
+
+
+<a name="initWithThumbnailsOfImage_usingImageInterpolation_"></a>
+<div class="methoddoc">
+<div class="methodname">- initWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation</div>
+<p>Initializes an IconFamily by creating its elements from an
+<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>, resampled using the interpolation mode specified by <span class="arg">imageInterpolation</span>.</p>
+</div>
+
+
+
+<a name="putOnScrap"></a>
+<div class="methoddoc">
+<div class="methodname">- putOnScrap</div>
+<p>Copies an IconFamily to the pasteboard as 'icns' data.</p>
+</div>
+
+
+
+<a name="setAsCustomIconForDirectory_"></a>
+<div class="methoddoc">
+<div class="methodname">- (BOOL) setAsCustomIconForDirectory:(NSString*)path</div>
+<p>Performs the same function as <span class="methodname">-setAsCustomIconForFile:</span>, but is implemented slightly differently as needed for folders (directories).</p>
+</div>
+
+
+<a name="setAsCustomIconForDirectory_withCompatibility_"></a>
+<div class="methoddoc">
+<div class="methodname">- (BOOL) setAsCustomIconForDirectory:(NSString*)path withCompatibility:(BOOL)compat</div>
+<p>Performs the same function as <span class="methodname">-setAsCustomIconForFile:withCompatibility:</span>, but is implemented slightly differently as needed for folders (directories).</p>
+</div>
+
+
+<a name="setAsCustomIconForFile_"></a>
+<div class="methoddoc">
+<div class="methodname">- (BOOL) setAsCustomIconForFile:(NSString*)path</div>
+<p>Writes the icon family to the resource fork of the specified file as its
+<span class="const">kCustomIconResource</span>, and sets the necessary Finder bits so the icon will
+be displayed for the file in Finder views.  This is equivalent to invoking <span class="methodname"><a href="#setAsCustomIconForFile_withCompatibility_">-setAsCustomIconForFile:withCompatibility:</a></span> with a <span class="arg">compat</span> parameter of <span class="const">NO</span>.</p>
+</div>
+
+
+<a name="setAsCustomIconForFile_withCompatibility_"></a>
+<div class="methoddoc">
+<div class="methodname">- (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat</div>
+<p>Writes the icon family to the resource fork of the specified file as its
+<span class="const">kCustomIconResource</span>, and sets the necessary Finder bits so the icon will
+be displayed for the file in Finder views.  If <span class="arg">compat</span> is <span class="const">YES</span>, additional copies of the IconFamily's "large" (32&nbsp;x&nbsp;32) and "small" (16&nbsp;x&nbsp;16) elements will be written to the file's resource fork as separate resources.  This takes additional space in the resource fork, but provides compatibility with pre-Mac&nbsp;OS&nbsp;X versions of Finder, which won't otherwise find and display the custom icon.</p>
+</div>
+
+
+
+<a name="setIconFamilyElement_fromBitmapImageRep_"></a>
+<div class="methoddoc">
+<div class="methodname">- (BOOL) setIconFamilyElement:(OSType)elementType fromBitmapImageRep:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a>*)bitmapImageRep</div>
+<p>Sets the image data for one of the icon family's elements from an
+<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a>.  The <span class="arg">elementType</span> parameter must be one of the icon
+family element types listed below, and the format of the <span class="arg">bitmapImageRep</span>
+must match the corresponding requirements specified below.  In all cases, the <span class="arg">bitmapImageRep</span> must also be non-planar and have 8 bits
+per sample.</p>
+
+<table>
+<tr class="tableheader"><td><span class="const">elementType</span></td><td>dimensions</td><td>format</td></tr>
+<tr><td class="const">kThumbnail32BitData</td><td>128 x 128</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
+<tr><td class="const">kThumbnail8BitMask</td><td>128 x 128</td><td>32-bit RGBA or 8-bit intensity</td></tr>
+<tr><td class="const">kLarge32BitData</td><td>32 x 32</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
+<tr><td class="const">kLarge8BitMask</td><td>32 x 32</td><td>32-bit RGBA or 8-bit intensity</td></tr>
+<tr><td class="const">kLarge1BitMask</td><td>32 x 32</td><td>32-bit RGBA, 8-bit intensity, or 1-bit</td></tr>
+<tr><td class="const">kSmall32BitData</td><td>16 x 16</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
+<tr><td class="const">kSmall8BitMask</td><td>16 x 16</td><td>32-bit RGBA or 8-bit intensity</td></tr>
+<tr><td class="const">kSmall1BitMask</td><td>16 x 16</td><td>32-bit RGBA, 8-bit intensity, or 1-bit</td></tr>
+</table>
+
+<p>When an RGBA image is supplied to set a "Mask" element, the mask data is taken from the image's alpha channel.</p>
+</div>
+
+
+<a name="writeToFile_"></a>
+<div class="methoddoc">
+<div class="methodname">- (BOOL) writeToFile:(NSString*)path</div>
+<p>Writes the icon family to an .icns file.</p>
+</div>
+
+
+</div>
+
+</div> <!-- content -->
+</body>
+</html>

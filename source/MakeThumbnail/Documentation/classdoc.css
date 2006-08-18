@@ -1,0 +1,123 @@
+body {
+	background: white;
+	color: black;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	margin: 16pt;
+	}
+
+#classtitle {
+	font: 24pt Optima, Geneva, Arial, Helvetica, sans-serif;
+	}
+
+a {
+	color: #808080;
+	text-decoration: none;
+	}
+
+a:link {
+	color: #808080;
+	text-decoration: none;
+	}
+
+a:visited {
+	color: #808080;
+	text-decoration: none;
+	}
+
+a:active {
+	color: #ffff60;
+	text-decoration: none;
+	}
+
+a:hover {
+	color: #ff8000;
+	text-decoration: underline;
+	}
+
+.indent {
+	margin-left: 30pt;
+	}
+
+.functionname {
+	font: 12px Courier, monospace;
+}
+
+.methods {
+	}
+
+.methodgroup {
+	margin-bottom: 12pt;
+	margin-left: 24pt;
+}
+
+#classheading {
+	color: black;
+	padding-bottom: 8px;
+	border-bottom: 1px dotted #808080;
+	margin-bottom: 48px;
+	}
+
+.headingxref {
+	margin-bottom: 12pt;
+}
+
+.xreflabel {
+	font-weight: bold;
+}
+
+.xrefvalue {
+	margin-left: 24pt;
+}
+
+#classdescription {
+	margin-bottom: 48pt;
+}
+
+h2 {
+	font: 18px Helvetica, sans-serif;
+	border-bottom: 1px solid black;
+	margin-bottom: 16px;
+	}
+
+.methoddoc {
+	margin: 16px;
+	padding: 8px;
+	border-bottom: 1px dotted gray;
+}
+
+.methodname, .methodsingroup, .arg, .const {
+	font: 12px Courier, Monaco, monospace;
+	}
+
+div.section {
+	background: #99CCCC;
+	margin: 16px;
+	border: 1px solid #808080;
+	padding: 16px;
+	}
+
+.codeblock {
+	font-family: Courier, monospace;
+	font-size: 12px;
+	margin-left: 64pt;
+	margin-right: 64pt;
+	padding: 8pt;
+	background: #CCCCCC;
+	border: 1px solid #999999;
+	}
+
+table {
+	margin-right: 24pt;
+	margin-left: 24pt;
+}
+
+.tableheader {
+	border-bottom: none;
+	text-decoration: underline;
+}
+
+td {
+	padding-right: 12pt;
+	padding-left: 12pt;
+}

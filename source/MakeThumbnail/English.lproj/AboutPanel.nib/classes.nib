@@ -1,0 +1,25 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {orderFrontAboutPanel = id; }; 
+            CLASS = AboutPanelController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {aboutPanel = id; aboutPanelImageView = id; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                loadImage = id; 
+                orderFrontAboutPanel = id; 
+                saveImageWithThumbnail = id; 
+                saveThumbnailToIcnsFile = id; 
+            }; 
+            CLASS = MainController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {aboutPanel = id; aboutPanelImageView = id; thumbnailImageView = id; }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

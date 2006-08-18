@@ -1,0 +1,6 @@
+/* Localized versions of Info.plist keys */
+
+CFBundleName = "MakeThumbnail";
+CFBundleShortVersionString = "MakeThumbnail version 0.9";
+CFBundleGetInfoString = "MakeThumbnail version 0.9, Copyright 2000-2006 Troy N. Stephens.";
+NSHumanReadableCopyright = "Copyright 2000-2006 Troy N. Stephens.";

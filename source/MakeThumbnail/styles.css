@@ -1,0 +1,16 @@
+body {
+	font-family: Verdana, Lucida Grande, Geneva, Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	}
+
+tt {
+	font-family: Courier, monospace;
+	font-size: 12px;
+	}
+
+.normal {
+	}
+
+.small {
+	font-size: 10px;
+	}
