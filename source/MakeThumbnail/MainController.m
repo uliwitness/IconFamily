@@ -13,6 +13,12 @@
 #import "MainController.h"
 #import "IconFamily.h"
 
+#define TEST(expr) \
+    if (!(expr)) { \
+        [[NSAlert alertWithMessageText:@"Fail" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"%s:%ld %s failed", (char *)__FILE__, (long)__LINE__, #expr] runModal]; \
+        return; \
+    }
+
 @implementation MainController
 
 - savePanelAccessoryView
@@ -159,6 +165,49 @@
         NSString* path = [[openPanel filenames] objectAtIndex:0];
         [IconFamily removeCustomIconFromFile:path];
     }
+}
+
+// A quick stab at some automated testing.  Exercises some but not all of the IconFamily class' functionality.  Not yet very rigorous, but it's a start.
+- (IBAction)runAutomatedTest:(id)sender
+{
+    // Create a folder to hold the result files the test generates.
+    NSString *resultsPath = [NSString stringWithUTF8String:tmpnam(NULL)];
+    NSLog(@"Creating results directory at path %@", resultsPath);
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if (![fileManager createDirectoryAtPath:resultsPath attributes:nil]) {
+        NSLog(@"** Failed to create results directory at path %@", resultsPath);
+    }
+
+    // Create an IconFamily.
+    IconFamily *iconFamily = [IconFamily iconFamilyWithThumbnailsOfImage:[thumbnailImageView image] usingImageInterpolation:NSImageInterpolationHigh];
+
+    // Test writing 'icns' files (and assigning custom icons to them).
+    NSString *path;
+    path = [resultsPath stringByAppendingPathComponent:@"File with Custom Icon.icns"];
+    TEST([iconFamily writeToFile:path]);
+    TEST([iconFamily setAsCustomIconForFile:path]);
+
+    path = [resultsPath stringByAppendingPathComponent:@"File with Custom Icon Removed.icns"];
+    TEST([iconFamily writeToFile:path]);
+    TEST([iconFamily setAsCustomIconForFile:path]);
+    TEST([IconFamily removeCustomIconFromFile:path]);
+
+    path = [resultsPath stringByAppendingPathComponent:@"File with Custom Icon Removed, Set Again.icns"];
+    TEST([iconFamily writeToFile:path]);
+    TEST([iconFamily setAsCustomIconForFile:path]);
+    TEST([IconFamily removeCustomIconFromFile:path]);
+    TEST([iconFamily setAsCustomIconForFile:path]);
+
+    // Test assigning custom icons to directories.
+    path = [resultsPath stringByAppendingPathComponent:@"Folder with Custom Icon"];
+    TEST([fileManager createDirectoryAtPath:path attributes:nil]);
+    TEST([iconFamily setAsCustomIconForDirectory:path]);
+
+    // Open the folder in Finder so we can inspect our handiwork.
+    NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+    [workspace openFile:resultsPath];
+
+    [[NSAlert alertWithMessageText:@"Pass" defaultButton:@"OK" alternateButton:nil otherButton:nil informativeTextWithFormat:@"Automated tests succeeded"] runModal];
 }
 
 @end

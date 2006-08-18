@@ -15,7 +15,7 @@
 
 
 <div class="centered">
-<p>by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, and Ben Haller</p>
+<p>by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, and Elliot Glaysher</p>
 <p><a href="#purpose">Purpose</a> - <a href="#license">License</a> - <a href="#download">Download</a> - <a href="#documentation">Documentation</a> - <a href="#credits">Credits</a> - <a href="#history">History</a></p>
 <p><img height="322" alt="IconFamily" width="490" src="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/MakeThumbnail.jpg" /></p>
 </div>
@@ -53,11 +53,20 @@ NSBitmapImageRep form</li>
 
 <h3><a name="download">Download</a></h3>
 
-<p>Get the complete source code here: <a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/IconFamily-0.9.zip">IconFamily-0.9.zip</a></p>
+<p>Get the complete source code here: <a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/IconFamily-0.9.2.zip">IconFamily-0.9.2.zip</a></p>
 
 <p>The included Xcode project builts a simple Cocoa testbed app called &ldquo;MakeThumbnail&rdquo; that demonstrates basic use of the IconFamily class.  MakeThumbnail lets you open any NSImage-supported image file and re-save it as either a JPEG image with a custom file icon, or an .icns file with the same icon data assigned as the file's custom icon.</p>
 
-<p>I've also posted a Universal Binary (Intel/PPC) build of the sample project: <a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/MakeThumbnail-0.9.zip">MakeThumbnail-0.9.zip</a></p>
+<p>I've also posted a Universal Binary (Intel/PPC) build of the sample project: <a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/MakeThumbnail-0.9.2.zip">MakeThumbnail-0.9.2.zip</a></p>
+
+<p>Previous releases:</p>
+
+<ul>
+<li><a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/IconFamily-0.9.1.zip">IconFamily-0.9.1.zip</a></li>
+<li><a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/IconFamily-0.9.zip">IconFamily-0.9.zip</a></li>
+<li><a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/IconFamily-0.5.1.tgz">IconFamily-0.5.1.tgz</a></li>
+<li><a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/IconFamily-0.5.tgz">IconFamily-0.5.tgz</a></li>
+</ul>
 
 
 <h3><a name="documentation">Documentation</a></h3>
@@ -80,6 +89,8 @@ of using the IconFamily code to build Popup Dock.  Ben Haller, proprietor of
 <a href="http://www.sticksoftware.com">Stick Software</a>, pitched in his own
 contributions and dedication to get the 0.4 release of IconFamily out the
 door.</p>
+
+<p>Sven Janssen, Peter Hosey, Conor Dearden, and Elliot Glaysher reported bugs and contributed patches to modernize the IconFamily code for Tiger in the 0.9.x releases.</p>
 
 <p><a href="mailto:mike@sugarcubesoftware.com">Mike Margolis</a>, author of <a href="http://sugarcubesoftware.com">Sugar Cube Software</a>'s <a href="http://sugarcubesoftware.com/sw/index.php?pic2icon">Pic2Icon</a> tool,
 has contributed support for creating shadowed, dog-eared document-like
@@ -135,11 +146,24 @@ something or other. :-)</p>
 
 <h3><a name="history">Version History</a></h3>
 
+<p><span class="newsdate">Version 0.9.2 - March 29, 2006</span></p>
+
+<ul>
+<li>Fixed a regression in <tt>-setAsCustomIconForDirectory:...</tt> that appeared in 0.9</li>
+<li><tt>-setAsCustomIconForFile:...</tt> now preserves the target file's previous modification time, thanks to an enhancement contributed by Elliot Glaysher</li>
+</ul>
+
+<p><span class="newsdate">Version 0.9.1 - March 12, 2006</span></p>
+
+<ul>
+<li>Fixed a regression in 0.9 that prevented a file's custom icon from being set after it had already been set and cleared.  (Thanks to Sven Janssen for noticing this and providing a test case!)</li>
+</ul>
+
 <p><span class="newsdate">Version 0.9 - March 9, 2006</span></p>
 
 <ul>
 <li>Fixed byte order handling in <tt>-bitmapImageRepWithAlphaForIconFamilyElement:</tt> to work correctly on Intel</li>
-<li>Replaced all usage of the deprecated <tt>FSSpec</tt> type with appropriate calls and use of <tt>FSRef</tt></li>
+<li>Replaced all usage of the deprecated <tt>FSSpec</tt> type with appropriate calls and use of <tt>FSRef</tt> (thanks to patches contributed by Peter Hosey and Conor Dearden!)</li>
 <li>Fixed build warnings that appeared on Tiger, and removed some old cruft</li>
 <li>Updated project file to Xcode 2.2</li>
 <li>Tested under Mac OS X 10.4.5, on both Intel and PPC hardware</li>

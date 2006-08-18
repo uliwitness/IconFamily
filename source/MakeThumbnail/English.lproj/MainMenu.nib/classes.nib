@@ -13,6 +13,7 @@
                 loadImage = id; 
                 newImageDraggedIntoImageView = id; 
                 removeCustomIcon = id; 
+                runAutomatedTest = id; 
                 saveImageWithThumbnail = id; 
                 saveThumbnailToIcnsFile = id; 
             }; 

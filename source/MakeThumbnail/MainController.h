@@ -27,4 +27,6 @@
 - (IBAction)removeCustomIcon:(id)sender;
 - (IBAction)saveImageWithThumbnail:(id)sender;
 - (IBAction)saveThumbnailToIcnsFile:(id)sender;
+
+- (IBAction)runAutomatedTest:(id)sender;
 @end
