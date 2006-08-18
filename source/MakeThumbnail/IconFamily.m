@@ -1,7 +1,7 @@
 // IconFamily.m
 // IconFamily class implementation
 // by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day and Ben Haller
-// version 0.9
+// version 0.9.1
 //
 // Project Home Page:
 //   http://homepage.mac.com/troy_stephens/software/objects/IconFamily/
@@ -565,8 +565,13 @@
 	                &targetFileFSRef,
 	                /*newSpec*/ NULL);
 	result = ResError();
-	if (!(result == noErr || result == dupFNErr))
+	if (result == dupFNErr) {
+        // If the call to FSCreateResFile() returned dupFNErr, targetFileFSRef will not have been set, so create it from the path.
+        if (![path getFSRef:&targetFileFSRef createFileIfNecessary:NO])
+            return NO;
+    } else if (result != noErr) {
 		return NO;
+    }
     
     // Open the file's resource fork.
     file = FSOpenResFile( &targetFileFSRef, fsRdWrPerm );
