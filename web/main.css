@@ -1,0 +1,344 @@
+/*<group=Page Layout>*/
+
+body {
+	padding: 16px 0;
+	text-align: center;
+	background: #44607e;
+}
+
+#container {
+	width: 810px;
+	margin-left: auto;
+	margin-right: auto;
+	background: white url(images/page-body.gif) repeat-y;
+	text-align: left;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: small;
+}
+
+#left {
+	float: left;
+	width: 15%;
+	overflow: hidden;
+	padding-left: 5px;
+	}
+
+#center {
+	float: left;
+	width: 560px;
+	overflow: hidden;
+	margin-left: 5px;
+	}
+
+#right {
+	float: left;
+	width: 238px;
+	overflow: hidden;
+	}
+
+.content {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #484848;
+	font-size: 12px;
+	padding: 0px 40px 5px 30px;
+}
+
+.footer {
+	text-align: center;
+	background: url(images/page-footer.gif) no-repeat bottom;
+	clear: both;
+	padding: 24px 0 34px;
+}
+
+/*<group=Sidebar>*/
+
+.sidebar {
+	padding: 0 30px 0 0;
+	}
+
+.sidebar h4 {
+	font-size: 8pt;
+	color: #ff8000;
+	border-bottom: 1px dotted #666666;
+	margin-bottom: 8px;
+	padding-bottom: 1px;
+	margin-left: 8px;
+}
+
+.sidebar p {
+	font-size: 10px;
+	margin: 0px 0px 24px 8px;
+}
+
+.sidebar ul {
+	font-size: 10px;
+	margin: 0px 8px 24px 8px;
+	padding: 0;
+}
+
+.sidebar li {
+	color: #484848;
+	list-style-type: none;
+	padding: 0px;
+}
+
+.sidebar .spacedlist li {
+	color: #484848;
+	list-style-type: none;
+	padding: 0px;
+	margin-bottom: 12px;
+}
+
+.sidebar li a {
+	font-size: 10px;
+	}
+	
+/*</group>*/
+	
+/*</group>*/
+
+/*<group=Global Tag Styles>*/
+
+h1, h2, h3, h4 {
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+	}
+
+h1 {
+	text-align:  center;
+	padding: 24px 0 24px 0;
+	font: bold 42px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	color: #cccccc;
+}
+
+h1 .iconfamily {
+	color: black;
+}
+
+h2 {
+	font-size: 12px;
+	text-align:  center;
+}
+
+h3 {
+	margin-top: 36px;
+	font-size: 10pt;
+	color: #ff8000;
+	letter-spacing: 4pt;
+	border-bottom: 1px solid #808080;
+	margin-bottom: 12pt;
+	}
+
+h4 {
+	font-size: 10pt;
+	color: #ff8000;
+	padding-bottom: 4pt;
+	}
+
+a, a:link, a:visited	{
+	color: #0066cc;
+	text-decoration: none;
+}
+a:active, a:hover	{
+	color: #0099ff;
+	text-decoration: none;
+	border-bottom: 1px dotted;
+}
+
+blockquote {
+	font: 14px/150% Georgia, Times New Roman, Times, serif;
+	margin-left: 30pt;
+	margin-right: 30pt;	
+	margin-bottom: 0pt;
+}
+
+em {
+	font-weight: bold;
+	font-style: inherit;
+	}
+
+.centered {
+	text-align: center;
+}
+
+code {
+	font-size: medium;
+}
+
+.codeblock {
+	color: #333333;
+	margin-left: 24pt;
+	margin-right: 24pt;
+	padding: 8pt;
+	background: #cccccc;
+	border: 1px solid #999999;
+	white-space: pre;
+	font: 7pt/normal Monaco, Courier, monospace;
+}
+
+.quote {
+/*	font: italic 14px Georgia, Times New Roman, Times, serif; */
+	font: 14px Georgia, Times, serif;
+}
+	
+/*</group>*/
+
+/*<group=Cocoa>*/
+
+.cocoaintro {
+	margin: 0 36px 0 36px;
+}
+
+.cocoaintro img {
+	float: right;
+	margin: 0 0 16px 24px;
+}
+
+.cocoaintro blockquote {
+	text-align: left;
+	margin: 0;
+}
+	
+.cocoaintro em {
+	font-style: italic;
+	font-weight: normal;
+}
+
+/*</group>*/
+
+/*<group=Photography>*/
+
+.picture {
+	text-align: center;
+	margin-top: 32px;
+}
+
+.picinfo {
+	font: 11px Geneva, Verdana, Arial, Helvetica, sans-serif;
+	margin-top: 12px;
+}
+
+.pictitle {
+	font-family: "Lucida Grande", Verdana, Arial, Helvetica, sans-serif;
+	font-size: 13px;
+}
+
+.picnav {
+	display: block;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 12px;
+	width: 86px;
+}
+
+.picnav a {
+	display: block;
+	float: left;
+}
+
+a.leftarrow, a.uparrow, a.rightarrow {
+	display: block;
+	width: 24px;
+	height: 24px;
+	text-indent: -5000px;
+	border: none;
+	padding: 0 2px 0 2px;
+}
+
+a.leftarrow {
+	background: url(images/button-left.png) no-repeat;
+}
+
+a.leftarrow:hover {
+	background: url(images/button-left-lit.png) no-repeat;
+}
+
+a.uparrow {
+	background: url(images/button-up.png) no-repeat;
+}
+
+a.uparrow:hover {
+	background: url(images/button-up-lit.png) no-repeat;
+}
+
+a.rightarrow {
+	background: url(images/button-right.png) no-repeat;
+}
+
+a.rightarrow:hover {
+	background: url(images/button-right-lit.png) no-repeat;
+}
+	
+/*</group>*/
+
+/*<group=Software>*/
+
+a.projectlink {
+	color: #ff8000;
+	text-decoration: none;
+}
+
+.newsdate {
+	color: #0080ff;
+}
+
+.filesize {
+	font-size: 8pt;
+}
+	
+/*</group>*/
+
+/*<group=WebLog>*/
+
+.logentry {
+	border-bottom: 1px dotted #808080;
+	margin-bottom: 24px;
+	}
+
+.logtitle {
+	color: #0080ff;
+	margin-bottom: 4px;
+	font: bold 16px Helvetica;
+}
+
+.logdate {
+	color: #0080ff;
+	font-size: 10px;
+}
+
+.logpermalink {
+	font-size: 10px;
+}
+
+.logbody {
+	line-height: 2em;
+	font-size: 12px;
+}
+
+.logaddendum {
+	margin-top: 24px;
+	border-top: 1px dotted #808080;
+	padding-top: 12px;
+}
+
+.verse {
+	font: italic 14px/150% Georgia, Times New Roman, Times, serif;
+}
+
+.weblogblockquote {
+	padding-left: 1em;
+	border-left: 2px solid #c0c0c0;
+	font: 14px/150% Georgia, Times, serif;
+}
+	
+/*</group>*/
+
+.linksheading		{ color: #ff8000; }
+.linksheadingwide {
+	color: #ff8000;
+	letter-spacing: 8pt;
+	padding-bottom: 4pt;
+	border-bottom: 1px solid #808080;
+	}
