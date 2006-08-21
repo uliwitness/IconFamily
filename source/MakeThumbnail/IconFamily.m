@@ -1055,7 +1055,7 @@
 			for (y = 0; y < pixelsHigh; y++) {
 				pSrc = bitmapData + y * bytesPerRow;
 				for (x = 0; x < pixelsWide; x++) {
-					*pDest++ = 0;
+					*pDest++ = 0xFF;
 					*pDest++ = *pSrc++;
 					*pDest++ = *pSrc++;
 					*pDest++ = *pSrc++;
