@@ -319,6 +319,9 @@
     Handle hRawBitmapData;
     Handle hRawMaskData;
     OSType maskElementType;
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
+	NSBitmapFormat bitmapFormat = NSAlphaFirstBitmapFormat;
+#endif
     OSErr result;
     unsigned long* pRawBitmapData;
     unsigned long* pRawBitmapDataEnd;
@@ -328,18 +331,32 @@
     // Make sure elementType is a valid type that we know how to handle, and
     // figure out the dimensions and bit depth of the bitmap for that type.
     switch (elementType) {
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
+	// 'ic08' 256x256 32-bit ARGB image
+	case kIconServices256PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 256;
+	    break;
+#endif
+	    
 	// 'it32' 128x128 32-bit RGB image
 	case kThumbnail32BitData:
 		maskElementType = kThumbnail8BitMask;
 		pixelsWide = 128;
 	    break;
-	    
+
+	// 'ih32' 48x48 32-bit RGB image
+	case kHuge32BitData:
+		maskElementType = kHuge8BitMask;
+		pixelsWide = 48;
+	    break;
+            	    
 	// 'il32' 32x32 32-bit RGB image
 	case kLarge32BitData:
 		maskElementType = kLarge8BitMask;
 		pixelsWide = 32;
 	    break;
-            
+
 	// 'is32' 16x16 32-bit RGB image
 	case kSmall32BitData:
 		maskElementType = kSmall8BitMask;
@@ -358,15 +375,22 @@
         return nil;
     }
         
-    // Get the corresponding raw, uncompressed 8-bit mask data.
-    hRawMaskData = NewHandle( pixelsWide * pixelsWide );
-    result = GetIconFamilyData( hIconFamily, maskElementType, hRawMaskData );
-    if (result != noErr) {
-        DisposeHandle( hRawMaskData );
-        hRawMaskData = NULL;
+    if (maskElementType) {
+        // Get the corresponding raw, uncompressed 8-bit mask data.
+        hRawMaskData = NewHandle( pixelsWide * pixelsWide );
+        result = GetIconFamilyData( hIconFamily, maskElementType, hRawMaskData );
+        if (result != noErr) {
+            DisposeHandle( hRawMaskData );
+            hRawMaskData = NULL;
+        }
     }
     
-    // The retrieved raw bitmap data is stored in memory as 32 bit per pixel, 8 bit per sample xRGB data.  (The sample order provided by IconServices is the same, regardless of whether we're running on a big-endian (PPC) or little-endian (Intel) architecture.)  With proper attention to byte order, we can fold the mask data into the color data in-place, producing RGBA data suitable for handing off to NSBitmapImageRep.
+    // The retrieved raw bitmap data is stored in memory as 32 bit per pixel, 8 bit per sample xRGB data.  (The sample order provided by IconServices is the same, regardless of whether we're running on a big-endian (PPC) or little-endian (Intel) architecture.)
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
+    // With proper attention to byte order, we can fold the mask data into the color data in-place, producing ARGB data suitable for handing off to NSBitmapImageRep.
+#else
+    // With proper attention to byte order, we can fold the mask data into the color data in-place, producing RGBA data suitable for handing off to NSBitmapImageRep.
+#endif
     HLock( hRawBitmapData );
     pRawBitmapData = (unsigned long*) *hRawBitmapData;
     pRawBitmapDataEnd = pRawBitmapData + pixelsWide * pixelsWide;
@@ -374,14 +398,25 @@
         HLock( hRawMaskData );
         pRawMaskData = (unsigned char*) *hRawMaskData;
         while (pRawBitmapData < pRawBitmapDataEnd) {
-			*pRawBitmapData = NSSwapBigLongToHost((NSSwapHostLongToBig(*pRawBitmapData) << 8) | *pRawMaskData++);
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
+            *pRawBitmapData = NSSwapBigLongToHost((*pRawMaskData++ << 24) | *pRawBitmapData);
+#else
+            *pRawBitmapData = NSSwapBigLongToHost((*pRawBitmapData << 8) | *pRawMaskData++);
+#endif
             ++pRawBitmapData;
         }
         HUnlock( hRawMaskData );
     } else {
-        while (pRawBitmapData < pRawBitmapDataEnd) {
-            *pRawBitmapData = NSSwapBigLongToHost((NSSwapHostLongToBig(*pRawBitmapData) << 8) | 0xff);
-            ++pRawBitmapData;
+        if(maskElementType) {
+            //We SHOULD have a mask, but apparently not. Fake it with alpha=1.
+            while (pRawBitmapData < pRawBitmapDataEnd) {
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
+                *pRawBitmapData = NSSwapBigLongToHost(0xff000000 | *pRawBitmapData);
+#else
+                *pRawBitmapData = NSSwapBigLongToHost((*pRawBitmapData << 8) | 0xff);
+#endif
+                ++pRawBitmapData;
+            }
         }
     }
     
@@ -405,6 +440,9 @@
                         hasAlpha:YES
                         isPlanar:NO
                   colorSpaceName:NSDeviceRGBColorSpace // NOTE: is this right?
+#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
+                    bitmapFormat:bitmapFormat
+#endif
                      bytesPerRow:0
                     bitsPerPixel:0] autorelease];
     pBitmapImageRepBitmapData = [bitmapImageRep bitmapData];
