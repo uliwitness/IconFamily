@@ -4,11 +4,11 @@
 // version 0.9.2
 //
 // Project Home Page:
-//   http://homepage.mac.com/troy_stephens/software/objects/IconFamily/
+//   http://iconfamily.sourceforge.net/
 //
 // Problems, shortcomings, and uncertainties that I'm aware of are flagged
 // with "NOTE:".  Please address bug reports, bug fixes, suggestions, etc.
-// to me at troy_stephens@mac.com
+// to the project Forums and bug tracker at https://sourceforge.net/projects/iconfamily/
 
 /*
     Copyright (c) 2001-2006 Troy N. Stephens
