@@ -383,6 +383,8 @@
             DisposeHandle( hRawMaskData );
             hRawMaskData = NULL;
         }
+    } else {
+        hRawMaskData = NULL;
     }
     
     // The retrieved raw bitmap data is stored in memory as 32 bit per pixel, 8 bit per sample xRGB data.  (The sample order provided by IconServices is the same, regardless of whether we're running on a big-endian (PPC) or little-endian (Intel) architecture.)
@@ -399,21 +401,51 @@
         pRawMaskData = (unsigned char*) *hRawMaskData;
         while (pRawBitmapData < pRawBitmapDataEnd) {
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-            *pRawBitmapData = NSSwapBigLongToHost((*pRawMaskData++ << 24) | *pRawBitmapData);
+            // Convert the xRGB pixel data to ARGB.
+            //                                                          PowerPC         Intel
+            //                                                          -------         -----
+            // Bytes in memory are                                      x R G B         x R G B
+            // *pRawBitmapData loads as 32-bit word into register       xRGB            BGRx
+            // NSSwapHostLongToBig() swaps this to                      xRGB            xRGB
+            // Loading *pRawMaskData and shifting left 24 bits yields   A000            A000
+            // Bitwise ORing these two words together yields            ARGB            ARGB
+            // NSSwapBigLongToHost() swaps this to                      ARGB            BGRA
+            // Bytes in memory after they're stored as a 32-bit word    A R G B         A R G B
+            *pRawBitmapData = NSSwapBigLongToHost((*pRawMaskData++ << 24) | NSSwapHostLongToBig(*pRawBitmapData));
 #else
-            *pRawBitmapData = NSSwapBigLongToHost((*pRawBitmapData << 8) | *pRawMaskData++);
+            // Convert the xRGB pixel data to RGBA.
+            //                                                          PowerPC         Intel
+            //                                                          -------         -----
+            // Bytes in memory are                                      x R G B         x R G B
+            // *pRawBitmapData loads as 32-bit word into register       xRGB            BGRx
+            // NSSwapHostLongToBig() swaps this to                      xRGB            xRGB
+            // Shifting left 8 bits yields ('0' denotes all zero bits)  RGB0            RGB0
+            // Bitwise ORing with *pRawMaskData byte yields             RGBA            RGBA
+            // NSSwapBigLongToHost() swaps this to                      RGBA            ABGR
+            // Bytes in memory after they're stored as a 32-bit word    R G B A         R G B A
+            *pRawBitmapData = NSSwapBigLongToHost((NSSwapHostLongToBig(*pRawBitmapData) << 8) | *pRawMaskData++);
 #endif
             ++pRawBitmapData;
         }
         HUnlock( hRawMaskData );
     } else {
         if(maskElementType) {
-            //We SHOULD have a mask, but apparently not. Fake it with alpha=1.
+            // We SHOULD have a mask, but apparently not. Fake it with alpha=1.
             while (pRawBitmapData < pRawBitmapDataEnd) {
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-                *pRawBitmapData = NSSwapBigLongToHost(0xff000000 | *pRawBitmapData);
+                // Set alpha byte to 0xff.
+                //                                                                  PowerPC         Intel
+                //                                                                  -------         -----
+                // Bytes in memory are                                              x R G B         x R G B
+                // Writing a single 0xff byte ('1') at pRawBitmapData yields        1 R G B         1 R G B
+                *(unsigned char *)pRawBitmapData = 0xff;
 #else
-                *pRawBitmapData = NSSwapBigLongToHost((*pRawBitmapData << 8) | 0xff);
+                // Set alpha byte to 0xff.
+                //                                                                  PowerPC         Intel
+                //                                                                  -------         -----
+                // Bytes in memory are                                              R G B x         R G B x
+                // Writing a single 0xff byte, 3 bytes past pRawBitmapData yields   R G B 1         R G B 1
+                *((unsigned char *)pRawBitmapData + 3) = 0xff;
 #endif
                 ++pRawBitmapData;
             }
