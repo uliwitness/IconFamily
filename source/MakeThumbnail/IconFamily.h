@@ -1,17 +1,16 @@
 // IconFamily.h
 // IconFamily class interface
-// by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, and Elliot Glaysher
-// version 0.9.2
+// by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, Elliot Glaysher, and Dave MacLachlan
+// version 0.9.3 alpha
 //
 // Project Home Page:
 //   http://iconfamily.sourceforge.net/
 //
-// Problems, shortcomings, and uncertainties that I'm aware of are flagged
-// with "NOTE:".  Please address bug reports, bug fixes, suggestions, etc.
-// to the project Forums and bug tracker at https://sourceforge.net/projects/iconfamily/
+// Problems, shortcomings, and uncertainties that I'm aware of are flagged with "NOTE:".  Please address bug reports, bug fixes, suggestions, etc. to the project Forums and bug tracker at https://sourceforge.net/projects/iconfamily/
 
 /*
     Copyright (c) 2001-2006 Troy N. Stephens
+    Portions Copyright (c) 2007 Google Inc.
 
     Use and distribution of this source code is governed by the MIT License, whose terms are as follows.
 
@@ -28,7 +27,7 @@
 // This class is a Cocoa/Objective-C wrapper for the Mac OS X Carbon API's
 // "icon family" data type.  Its main purpose is to enable Cocoa applications
 // to easily create custom file icons from NSImage instances, and thus take
-// advantage of Mac OS X's new 128x128 RGBA "thumbnail" icon format to provide
+// advantage of Mac OS X's new larger RGBA "thumbnail" icon format to provide
 // richly detailed thumbnail previews of the files' contents.
 //
 // Using IconFamily, this becomes as simple as:
@@ -99,16 +98,18 @@
 // the elementType, the bitmapImageRep must also be non-planar and have 8 bits
 // per sample.
 //
-//  elementType           dimensions   format
-//  -------------------   ----------   ---------------------------------------
-//  kThumbnail32BitData    128 x 128   32-bit RGBA, 32-bit RGB, or 24-bit RGB
-//  kThumbnail8BitMask     128 x 128   32-bit RGBA or 8-bit intensity
-//  kLarge32BitData         32 x  32   32-bit RGBA, 32-bit RGB, or 24-bit RGB
-//  kLarge8BitMask          32 x  32   32-bit RGBA or 8-bit intensity
-//  kLarge1BitMask          32 x  32   32-bit RGBA, 8-bit intensity, or 1-bit
-//  kSmall32BitData         16 x  16   32-bit RGBA, 32-bit RGB, or 24-bit RGB
-//  kSmall8BitMask          16 x  16   32-bit RGBA or 8-bit intensity
-//  kSmall1BitMask          16 x  16   32-bit RGBA, 8-bit intensity, or 1-bit
+//  elementType                       dimensions   format
+//  -------------------               ----------   ---------------------------------------
+//  kIconServices512PixelDataARGB     512 x 512   32-bit RGBA, 32-bit RGB, or 24-bit RGB
+//  kIconServices256PixelDataARGB     256 x 256   32-bit RGBA, 32-bit RGB, or 24-bit RGB
+//  kThumbnail32BitData               128 x 128   32-bit RGBA, 32-bit RGB, or 24-bit RGB
+//  kThumbnail8BitMask                128 x 128   32-bit RGBA or 8-bit intensity
+//  kLarge32BitData                   32 x  32   32-bit RGBA, 32-bit RGB, or 24-bit RGB
+//  kLarge8BitMask                    32 x  32   32-bit RGBA or 8-bit intensity
+//  kLarge1BitMask                    32 x  32   32-bit RGBA, 8-bit intensity, or 1-bit
+//  kSmall32BitData                   16 x  16   32-bit RGBA, 32-bit RGB, or 24-bit RGB
+//  kSmall8BitMask                    16 x  16   32-bit RGBA or 8-bit intensity
+//  kSmall1BitMask                    16 x  16   32-bit RGBA, 8-bit intensity, or 1-bit
 //
 // When an RGBA image is supplied to set a "Mask" element, the mask data is
 // taken from the image's alpha channel.
@@ -129,6 +130,7 @@
 
 // Gets the image data for one of the icon family's elements as a new, 32-bit
 // RGBA NSBitmapImageRep.  The specified elementType should be one of
+// kIconServices512PixelDataARGB, kIconServices256PixelDataARGB,
 // kThumbnail32BitData, kLarge32BitData, or kSmall32BitData.
 //
 // The returned NSBitmapImageRep will have the corresponding 8-bit mask data
