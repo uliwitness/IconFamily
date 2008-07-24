@@ -1,7 +1,7 @@
 // IconFamily.m
 // IconFamily class implementation
 // by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, Elliot Glaysher, and Dave MacLachlan
-// version 0.9.3 alpha
+// version 0.9.3
 //
 // Project Home Page:
 //   http://iconfamily.sourceforge.net/

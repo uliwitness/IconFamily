@@ -1,25 +1,39 @@
-{
-    IBClasses = (
-        {
-            ACTIONS = {orderFrontAboutPanel = id; }; 
-            CLASS = AboutPanelController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {aboutPanel = id; aboutPanelImageView = id; }; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
-        {
-            ACTIONS = {
-                loadImage = id; 
-                orderFrontAboutPanel = id; 
-                saveImageWithThumbnail = id; 
-                saveThumbnailToIcnsFile = id; 
-            }; 
-            CLASS = MainController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {aboutPanel = id; aboutPanelImageView = id; thumbnailImageView = id; }; 
-            SUPERCLASS = NSObject; 
-        }
-    ); 
-    IBVersion = 1; 
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IBClasses</key>
+	<array>
+		<dict>
+			<key>ACTIONS</key>
+			<dict>
+				<key>orderFrontAboutPanel</key>
+				<string>id</string>
+			</dict>
+			<key>CLASS</key>
+			<string>AboutPanelController</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>OUTLETS</key>
+			<dict>
+				<key>aboutPanel</key>
+				<string>NSPanel</string>
+				<key>aboutPanelImageView</key>
+				<string>NSImageView</string>
+			</dict>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+		<dict>
+			<key>CLASS</key>
+			<string>FirstResponder</string>
+			<key>LANGUAGE</key>
+			<string>ObjC</string>
+			<key>SUPERCLASS</key>
+			<string>NSObject</string>
+		</dict>
+	</array>
+	<key>IBVersion</key>
+	<string>1</string>
+</dict>
+</plist>
