@@ -44,7 +44,7 @@
 <p>IconFamily is a Cocoa/Objective-C wrapper for the Mac OS X Carbon API's
 "icon family" data type.  Its main purpose is to enable Cocoa applications
 to easily create custom file icons from <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a> instances, and thus take
-advantage of Mac OS X's new 128x128 RGBA "thumbnail" icon format to provide
+advantage of Mac OS X's high-resolution RGBA "thumbnail" icon formats to provide
 richly detailed thumbnail previews of the files' contents.</p>
 
 <p>Using IconFamily, this becomes as simple as:</p>
@@ -211,7 +211,7 @@ id iconFamily = [IconFamily iconFamilyWithThumbnailsOfImage:anImage];<br />
 <div class="methoddoc">
 <div class="methodname">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a>*) bitmapImageRepWithAlphaForIconFamilyElement:(OSType)elementType</div>
 <p>Gets the image data for one of the icon family's elements as a new, 32-bit
-RGBA <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a>.  The specified <span class="arg">elementType</span> should be one of
+RGBA <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a>.  The specified <span class="arg">elementType</span> should be one of <span class="const">kIconServices512PixelDataARGB</span>, <span class="const">kIconServices256PixelDataARGB</span>,
 <span class="const">kThumbnail32BitData</span>, <span class="const">kLarge32BitData</span>, or <span class="const">kSmall32BitData</span>.</p>
 
 <p>The returned <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a> will have the corresponding 8-bit mask data
@@ -341,6 +341,8 @@ per sample.</p>
 
 <table>
 <tr class="tableheader"><td><span class="const">elementType</span></td><td>dimensions</td><td>format</td></tr>
+<tr><td class="const">kIconServices512PixelDataARGB</td><td>512 x 512</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
+<tr><td class="const">kIconServices256PixelDataARGB</td><td>256 x 256</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
 <tr><td class="const">kThumbnail32BitData</td><td>128 x 128</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
 <tr><td class="const">kThumbnail8BitMask</td><td>128 x 128</td><td>32-bit RGBA or 8-bit intensity</td></tr>
 <tr><td class="const">kLarge32BitData</td><td>32 x 32</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>

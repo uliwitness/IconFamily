@@ -3,12 +3,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>IconFamily class</title>
+	<title>IconFamily class documentation</title>
 	<link rel="stylesheet" href="classdoc.css" type="text/css" />
 </head>
 <body>
 
 <div id="content">
+
+<p><a href="http://iconfamily.sourceforge.net">Home Page</a> - <a href="https://sourceforge.net/projects/iconfamily">SourceForge Project Page</a></p>
 
 <!-- begin heading -->
 
@@ -18,12 +20,12 @@
 
 	<div class="headingxref">
 		<div class="xreflabel">Inherits from:</div>
-		<div class="xrefvalue"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Classes/NSObject.html#//apple_ref/occ/cl/NSObject">NSObject</a></div>
+		<div class="xrefvalue"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSObject_Class/index.html">NSObject</a></div>
 	</div>
 
 	<div class="headingxref">
 		<div class="xreflabel">Conforms to:</div>
-		<div class="xrefvalue"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/ObjC_classic/Protocols/NSObject.html#//apple_ref/occ/intf/NSObject">NSObject (NSObject)</a></div>
+		<div class="xrefvalue"><a href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Protocols/NSObject_Protocol/index.html">NSObject (NSObject)</a></div>
 	</div>
 
 	<div class="headingxref">
@@ -41,8 +43,8 @@
 
 <p>IconFamily is a Cocoa/Objective-C wrapper for the Mac OS X Carbon API's
 "icon family" data type.  Its main purpose is to enable Cocoa applications
-to easily create custom file icons from <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a> instances, and thus take
-advantage of Mac OS X's new 128x128 RGBA "thumbnail" icon format to provide
+to easily create custom file icons from <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a> instances, and thus take
+advantage of Mac OS X's high-resolution RGBA "thumbnail" icon formats to provide
 richly detailed thumbnail previews of the files' contents.</p>
 
 <p>Using IconFamily, this becomes as simple as:</p>
@@ -181,13 +183,13 @@ id iconFamily = [IconFamily iconFamilyWithThumbnailsOfImage:anImage];<br />
 
 <a name="C_iconFamilyWithThumbnailsOfImage_"></a>
 <div class="methoddoc">
-<div class="methodname">+ (IconFamily*) iconFamilyWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*)image</div>
+<div class="methodname">+ (IconFamily*) iconFamilyWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a>*)image</div>
 <p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithThumbnailsOfImage_">-initWithThumbnailsOfImage:</a></span> method.</p>
 </div>
 
 <a name="C_iconFamilyWithThumbnailsOfImage_usingImageInterpolation_"></a>
 <div class="methoddoc">
-<div class="methodname">+ (IconFamily*) iconFamilyWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation</div>
+<div class="methodname">+ (IconFamily*) iconFamilyWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a>*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation</div>
 <p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithThumbnailsOfImage_usingImageInterpolation_">-initWithThumbnailsOfImage:usingImageInterpolation:</a></span> method.</p>
 </div>
 
@@ -207,12 +209,12 @@ id iconFamily = [IconFamily iconFamilyWithThumbnailsOfImage:anImage];<br />
 
 <a name="bitmapImageRepWithAlphaForIconFamilyElement_"></a>
 <div class="methoddoc">
-<div class="methodname">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a>*) bitmapImageRepWithAlphaForIconFamilyElement:(OSType)elementType</div>
+<div class="methodname">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a>*) bitmapImageRepWithAlphaForIconFamilyElement:(OSType)elementType</div>
 <p>Gets the image data for one of the icon family's elements as a new, 32-bit
-RGBA <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a>.  The specified <span class="arg">elementType</span> should be one of
+RGBA <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a>.  The specified <span class="arg">elementType</span> should be one of <span class="const">kIconServices512PixelDataARGB</span>, <span class="const">kIconServices256PixelDataARGB</span>,
 <span class="const">kThumbnail32BitData</span>, <span class="const">kLarge32BitData</span>, or <span class="const">kSmall32BitData</span>.</p>
 
-<p>The returned <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a> will have the corresponding 8-bit mask data
+<p>The returned <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a> will have the corresponding 8-bit mask data
 in its alpha channel, or a fully opaque alpha channel if the icon family
 has no 8-bit mask data for the specified alpha channel.</p>
 
@@ -222,8 +224,8 @@ has no 8-bit mask data for the specified alpha channel.</p>
 
 <a name="imageWithAllReps"></a>
 <div class="methoddoc">
-<div class="methodname">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*) imageWithAllReps</div>
-<p>Creates and returns an <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a> that contains the icon family's various elements as its <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImageRep.html#//apple_ref/occ/cl/NSImageRep">NSImageRep</a>s.</p>
+<div class="methodname">- (<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a>*) imageWithAllReps</div>
+<p>Creates and returns an <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a> that contains the icon family's various elements as its <a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImageRep_Class/index.html">NSImageRep</a>s.</p>
 </div>
 
 
@@ -271,18 +273,18 @@ has no 8-bit mask data for the specified alpha channel.</p>
 
 <a name="initWithThumbnailsOfImage_"></a>
 <div class="methoddoc">
-<div class="methodname">- initWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*)image</div>
+<div class="methodname">- initWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a>*)image</div>
 <p>Initializes an IconFamily by creating its elements from a resampled
-<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>.  This is equivalent to invoking <span class="methodname">-initWithThumbnailsOfImage:usingImageInterpolation:</span> with an <span class="arg">imageInterpolation</span> parameter of <span class="const">NSImageInterpolationHigh</span>, which
+<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a>.  This is equivalent to invoking <span class="methodname">-initWithThumbnailsOfImage:usingImageInterpolation:</span> with an <span class="arg">imageInterpolation</span> parameter of <span class="const">NSImageInterpolationHigh</span>, which
 produces highly smoothed thumbnails.</p>
 </div>
 
 
 <a name="initWithThumbnailsOfImage_usingImageInterpolation_"></a>
 <div class="methoddoc">
-<div class="methodname">- initWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation</div>
+<div class="methodname">- initWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a>*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation</div>
 <p>Initializes an IconFamily by creating its elements from an
-<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSImage.html#//apple_ref/occ/cl/NSImage">NSImage</a>, resampled using the interpolation mode specified by <span class="arg">imageInterpolation</span>.</p>
+<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a>, resampled using the interpolation mode specified by <span class="arg">imageInterpolation</span>.</p>
 </div>
 
 
@@ -330,15 +332,17 @@ be displayed for the file in Finder views.  If <span class="arg">compat</span> i
 
 <a name="setIconFamilyElement_fromBitmapImageRep_"></a>
 <div class="methoddoc">
-<div class="methodname">- (BOOL) setIconFamilyElement:(OSType)elementType fromBitmapImageRep:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a>*)bitmapImageRep</div>
+<div class="methodname">- (BOOL) setIconFamilyElement:(OSType)elementType fromBitmapImageRep:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a>*)bitmapImageRep</div>
 <p>Sets the image data for one of the icon family's elements from an
-<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/ObjC_classic/Classes/NSBitmapImageRep.html#//apple_ref/occ/cl/NSBitmapImageRep">NSBitmapImageRep</a>.  The <span class="arg">elementType</span> parameter must be one of the icon
+<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSBitmapImageRep_Class/index.html">NSBitmapImageRep</a>.  The <span class="arg">elementType</span> parameter must be one of the icon
 family element types listed below, and the format of the <span class="arg">bitmapImageRep</span>
 must match the corresponding requirements specified below.  In all cases, the <span class="arg">bitmapImageRep</span> must also be non-planar and have 8 bits
 per sample.</p>
 
 <table>
 <tr class="tableheader"><td><span class="const">elementType</span></td><td>dimensions</td><td>format</td></tr>
+<tr><td class="const">kIconServices512PixelDataARGB</td><td>512 x 512</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
+<tr><td class="const">kIconServices256PixelDataARGB</td><td>256 x 256</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
 <tr><td class="const">kThumbnail32BitData</td><td>128 x 128</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
 <tr><td class="const">kThumbnail8BitMask</td><td>128 x 128</td><td>32-bit RGBA or 8-bit intensity</td></tr>
 <tr><td class="const">kLarge32BitData</td><td>32 x 32</td><td>32-bit RGBA, 32-bit RGB, or 24-bit RGB</td></tr>
@@ -361,6 +365,11 @@ per sample.</p>
 
 
 </div>
+
+<p><a href="http://sourceforge.net" title="sourceforge"><img src="http://sflogo.sourceforge.net/sflogo.php?group_id=164783&amp;type=2" width="125" height="37" border="0" alt="SourceForge.net Logo" /></a></p>
+
+<p>Validate: <a href="http://validator.w3.org/check/referer">xhtml</a> -
+<a href="http://jigsaw.w3.org/css-validator/check/referer">css</a></p>
 
 </div> <!-- content -->
 </body>

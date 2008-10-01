@@ -63,7 +63,7 @@ door.</p>
 
 <p>Sven Janssen, Peter Hosey, Conor Dearden, and Elliot Glaysher reported bugs and contributed patches to modernize the IconFamily code for Tiger in the 0.9.x releases.</p>
 
-<p>Dave MacLachlan of Google has contributed support for 256x256 and 512x512 icon family elements (added to the svn repository on 2007-11-09) that I hope to soon roll into a post-0.9.2 release.</p>
+<p>Dave MacLachlan of Google has contributed support for 256x256 and 512x512 icon family elements that I've rolled into a 0.9.3 release.</p>
 
 <p><a href="mailto:mike@sugarcubesoftware.com">Mike Margolis</a>, author of <a href="http://sugarcubesoftware.com">Sugar Cube Software</a>'s <a href="http://sugarcubesoftware.com/sw/index.php?pic2icon">Pic2Icon</a> tool,
 has contributed support for creating shadowed, dog-eared document-like
@@ -114,7 +114,17 @@ something or other. :-)</p>
 
 <h3><a>Version History</a></h3>
 
-<p><span class="newsdate">August 19, 2006-08-19</span></p>
+<p><span class="newsdate">Version 0.9.3 - 2008-09-30</span></p>
+
+<p>Incorporated enhancements contributed by Dave MacLachlan @ Google into a new, "0.9.3" release (these changes have been in svn since 2007-11-09):</p>
+
+<ul>
+<li>Creation and retrieval of 256x256 (Tiger and later) and 512x512 (Leopard and later) ARGB icon family elements.</li>
+<li>Removed unnecessary <tt>HLock()/HUnlock()</tt> calls. (Handle-based memory isn't really compacted anymore, so blocks can't move.)</li>
+<li>Added guard against <tt>NULL</tt> "scrapInfos" pointer in <tt>+canInitWithScrap</tt>.</li>
+</ul>
+
+<p><span class="newsdate">Moving Day - 2006-08-19</span></p>
 
 <ul>
 <li>Project moved from its <a href="http://homepage.mac.com/troy_stephens/software/objects/IconFamily/">previous location</a> to its <a href="http://sourceforge.net/projects/iconfamily/" title="IconFamily project page on sourceforge">new home on sourceforge</a>!</li>
