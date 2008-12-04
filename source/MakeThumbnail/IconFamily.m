@@ -368,12 +368,23 @@ enum {
     [super dealloc];
 }
 
+- (void) finalize
+{
+   /*  "Starting with Mac OS X v10.3, Memory Manager is thread safe"
+       -- Memory Manager Reference
+   */
+   DisposeHandle( (Handle)hIconFamily );
+   hIconFamily = NULL;
+
+   [super finalize];
+}
+
 - (NSBitmapImageRep*) bitmapImageRepWithAlphaForIconFamilyElement:(OSType)elementType;
 {
     NSBitmapImageRep* bitmapImageRep;
     int pixelsWide;
     Handle hRawBitmapData;
-    Handle hRawMaskData;
+    Handle hRawMaskData = NULL;
     OSType maskElementType;
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
 	NSBitmapFormat bitmapFormat = NSAlphaFirstBitmapFormat;
@@ -1508,7 +1519,7 @@ enum {
     ScrapRef scrap = NULL;
     ScrapFlavorInfo* scrapInfos = NULL;
     UInt32 numInfos = 0;
-    int i = 0;
+    UInt32 i = 0;
     BOOL canInit = NO;
 
     GetCurrentScrap(&scrap);
