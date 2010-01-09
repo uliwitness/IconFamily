@@ -298,7 +298,7 @@ enum {
     }
     
     [iconImage512x512 lockFocus];
-    iconBitmap512x512 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 512, 512)];
+    iconBitmap512x512 = [[[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 512, 512)] autorelease];
     [iconImage512x512 unlockFocus];
     if (!iconBitmap512x512) {
       [self release];
@@ -319,7 +319,6 @@ enum {
     }
     
     [self setIconFamilyElement:kIconServices512PixelDataARGB fromBitmapImageRep:iconBitmap512x512];
-    [iconBitmap512x512 release];   
     
     iconImage256x256 = [IconFamily resampleImage:bitmappedIconImage512x512 toIconWidth:256 usingImageInterpolation:imageInterpolation];
     if (iconImage256x256) {
