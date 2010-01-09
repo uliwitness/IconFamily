@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'icns-pasteboard' target in the 'icns-pasteboard' project.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
