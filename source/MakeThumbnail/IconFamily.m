@@ -1195,7 +1195,6 @@ enum {
 			return NULL;
 		pRawData = (unsigned char*) *hRawData;
 	
-		pSrc = bitmapData;
 		pDest = pRawData;
 		
 		if (bitsPerPixel == 32) {
@@ -1291,7 +1290,6 @@ enum {
 		
 		cgPal = CGPaletteCreateDefaultColorPalette();
 		
-		pSrc = bitmapData;
 		pDest = pRawData;
 		if (bitsPerPixel == 32) {
 			for (y = 0; y < pixelsHigh; y++) {
