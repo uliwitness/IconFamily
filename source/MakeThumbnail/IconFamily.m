@@ -411,8 +411,8 @@ enum {
 	NSBitmapFormat bitmapFormat = NSAlphaFirstBitmapFormat;
 #endif
     OSErr result;
-    unsigned long* pRawBitmapData;
-    unsigned long* pRawBitmapDataEnd;
+    UInt32* pRawBitmapData;
+    UInt32* pRawBitmapDataEnd;
     unsigned char* pRawMaskData;
     unsigned char* pBitmapImageRepBitmapData;
 
@@ -488,11 +488,11 @@ enum {
     // With proper attention to byte order, we can fold the mask data into the color data in-place, producing RGBA data suitable for handing off to NSBitmapImageRep.
 #endif
 //    HLock( hRawBitmapData ); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
-    pRawBitmapData = (unsigned long*) *hRawBitmapData;
+    pRawBitmapData = (UInt32*) *hRawBitmapData;
     pRawBitmapDataEnd = pRawBitmapData + pixelsWide * pixelsWide;
     if (hRawMaskData) {
 //        HLock( hRawMaskData ); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
-        pRawMaskData = (unsigned char*) *hRawMaskData;
+        pRawMaskData = (UInt8*) *hRawMaskData;
         while (pRawBitmapData < pRawBitmapDataEnd) {
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
             // Convert the xRGB pixel data to ARGB.
@@ -1106,10 +1106,10 @@ enum {
     }
     if (size.width >= size.height) {
         newSize.width  = iconWidth;
-        newSize.height = floor( (float) iconWidth * size.height / size.width + 0.5 );
+        newSize.height = (float)floor( iconWidth * size.height / size.width + 0.5 );
     } else {
         newSize.height = iconWidth;
-        newSize.width  = floor( (float) iconWidth * size.width / size.height + 0.5 );
+        newSize.width  = (float)floor( iconWidth * size.width / size.height + 0.5 );
     }
     [workingImage setSize:newSize];
 
@@ -1130,8 +1130,8 @@ enum {
     [graphicsContext setImageInterpolation:imageInterpolation];
     
     // Composite the working image into the icon bitmap, centered.
-    targetRect.origin.x = ((float)iconWidth - newSize.width ) / 2.0;
-    targetRect.origin.y = ((float)iconWidth - newSize.height) / 2.0;
+    targetRect.origin.x = ((float)iconWidth - newSize.width ) / 2.0f;
+    targetRect.origin.y = ((float)iconWidth - newSize.height) / 2.0f;
     targetRect.size.width = newSize.width;
     targetRect.size.height = newSize.height;
     [workingImageRep drawInRect:targetRect];
@@ -1160,13 +1160,13 @@ enum {
     float oneOverAlpha;
     
     // Get information about the bitmapImageRep.
-    int pixelsWide      = [bitmapImageRep pixelsWide];
-    int pixelsHigh      = [bitmapImageRep pixelsHigh];
-    int bitsPerSample   = [bitmapImageRep bitsPerSample];
-    int samplesPerPixel = [bitmapImageRep samplesPerPixel];
-    int bitsPerPixel    = [bitmapImageRep bitsPerPixel];
+    long pixelsWide      = [bitmapImageRep pixelsWide];
+    long pixelsHigh      = [bitmapImageRep pixelsHigh];
+    long bitsPerSample   = [bitmapImageRep bitsPerSample];
+    long samplesPerPixel = [bitmapImageRep samplesPerPixel];
+    long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
     BOOL isPlanar       = [bitmapImageRep isPlanar];
-    int bytesPerRow     = [bitmapImageRep bytesPerRow];
+    long bytesPerRow     = [bitmapImageRep bytesPerRow];
     unsigned char* bitmapData = [bitmapImageRep bitmapData];
 
     // Make sure bitmap has the required dimensions.
@@ -1251,13 +1251,13 @@ enum {
     int x, y;
 	
     // Get information about the bitmapImageRep.
-    int pixelsWide      = [bitmapImageRep pixelsWide];
-    int pixelsHigh      = [bitmapImageRep pixelsHigh];
-    int bitsPerSample   = [bitmapImageRep bitsPerSample];
-    int samplesPerPixel = [bitmapImageRep samplesPerPixel];
-    int bitsPerPixel    = [bitmapImageRep bitsPerPixel];
+    long pixelsWide      = [bitmapImageRep pixelsWide];
+    long pixelsHigh      = [bitmapImageRep pixelsHigh];
+    long bitsPerSample   = [bitmapImageRep bitsPerSample];
+    long samplesPerPixel = [bitmapImageRep samplesPerPixel];
+    long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
     BOOL isPlanar       = [bitmapImageRep isPlanar];
-    int bytesPerRow     = [bitmapImageRep bytesPerRow];
+    long bytesPerRow     = [bitmapImageRep bytesPerRow];
     unsigned char* bitmapData = [bitmapImageRep bitmapData];
     
     // Make sure bitmap has the required dimensions.
@@ -1340,13 +1340,13 @@ enum {
     int x, y;
     
     // Get information about the bitmapImageRep.
-    int pixelsWide      = [bitmapImageRep pixelsWide];
-    int pixelsHigh      = [bitmapImageRep pixelsHigh];
-    int bitsPerSample   = [bitmapImageRep bitsPerSample];
-    int samplesPerPixel = [bitmapImageRep samplesPerPixel];
-    int bitsPerPixel    = [bitmapImageRep bitsPerPixel];
+    long pixelsWide      = [bitmapImageRep pixelsWide];
+    long pixelsHigh      = [bitmapImageRep pixelsHigh];
+    long bitsPerSample   = [bitmapImageRep bitsPerSample];
+    long samplesPerPixel = [bitmapImageRep samplesPerPixel];
+    long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
     BOOL isPlanar       = [bitmapImageRep isPlanar];
-    int bytesPerRow     = [bitmapImageRep bytesPerRow];
+    long bytesPerRow     = [bitmapImageRep bytesPerRow];
     unsigned char* bitmapData = [bitmapImageRep bitmapData];
 
     // Make sure bitmap has the required dimensions.
@@ -1418,13 +1418,13 @@ enum {
     unsigned char maskByte;
     
     // Get information about the bitmapImageRep.
-    int pixelsWide      = [bitmapImageRep pixelsWide];
-    int pixelsHigh      = [bitmapImageRep pixelsHigh];
-    int bitsPerSample   = [bitmapImageRep bitsPerSample];
-    int samplesPerPixel = [bitmapImageRep samplesPerPixel];
-    int bitsPerPixel    = [bitmapImageRep bitsPerPixel];
+    long pixelsWide      = [bitmapImageRep pixelsWide];
+    long pixelsHigh      = [bitmapImageRep pixelsHigh];
+    long bitsPerSample   = [bitmapImageRep bitsPerSample];
+    long samplesPerPixel = [bitmapImageRep samplesPerPixel];
+    long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
     BOOL isPlanar       = [bitmapImageRep isPlanar];
-    int bytesPerRow     = [bitmapImageRep bytesPerRow];
+    long bytesPerRow     = [bitmapImageRep bytesPerRow];
     unsigned char* bitmapData = [bitmapImageRep bitmapData];
 	
     // Make sure bitmap has the required dimensions.

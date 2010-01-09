@@ -68,7 +68,7 @@
 {
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
     NSArray* imageFileTypes = [NSImage imageFileTypes];
-    int result;
+    long result;
     
     result = [openPanel runModalForDirectory:[NSHomeDirectory() stringByAppendingPathComponent:@"Pictures"] file:nil types:imageFileTypes];
     if (result == NSOKButton) {
@@ -82,7 +82,7 @@
 - (IBAction)saveImageWithThumbnail:(id)sender
 {
     NSSavePanel* savePanel = [NSSavePanel savePanel];
-    int result;
+    long result;
     
     [savePanel setTitle:@"Save image with thumbnail to (JPEG) file"];
     [savePanel setAccessoryView:[self savePanelAccessoryView]];
@@ -113,7 +113,7 @@
             return;
         }
         jpegProperties = [NSDictionary dictionaryWithObjectsAndKeys:
-            [NSNumber numberWithFloat:0.9], NSImageCompressionFactor,
+            [NSNumber numberWithFloat:0.9f], NSImageCompressionFactor,
             nil];
         jpegData = [(NSBitmapImageRep*)imageRep
             representationUsingType:NSJPEGFileType
@@ -128,7 +128,7 @@
 - (IBAction)saveThumbnailToIcnsFile:(id)sender
 {
     NSSavePanel* savePanel = [NSSavePanel savePanel];
-    int result;
+    long result;
     
     [savePanel setTitle:@"Save thumbnail to .icns file"];
     [savePanel setAccessoryView:[self savePanelAccessoryView]];
@@ -158,7 +158,7 @@
 - (IBAction)removeCustomIcon:(id)sender
 {
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
-    int result;
+    long result;
     
     result = [openPanel runModalForDirectory:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"] file:nil types:nil];
     if (result == NSOKButton) {
