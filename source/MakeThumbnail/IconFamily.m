@@ -501,24 +501,24 @@ enum {
             //                                                          -------         -----
             // Bytes in memory are                                      x R G B         x R G B
             // *pRawBitmapData loads as 32-bit word into register       xRGB            BGRx
-            // NSSwapHostLongToBig() swaps this to                      xRGB            xRGB
+            // CFSwapInt32HostToBig() swaps this to                     xRGB            xRGB
             // Loading *pRawMaskData and shifting left 24 bits yields   A000            A000
             // Bitwise ORing these two words together yields            ARGB            ARGB
-            // NSSwapBigLongToHost() swaps this to                      ARGB            BGRA
+            // CFSwapInt32BigToHost() swaps this to                     ARGB            BGRA
             // Bytes in memory after they're stored as a 32-bit word    A R G B         A R G B
-            *pRawBitmapData = NSSwapBigLongToHost((*pRawMaskData++ << 24) | NSSwapHostLongToBig(*pRawBitmapData));
+            *pRawBitmapData = CFSwapInt32BigToHost((*pRawMaskData++ << 24) | CFSwapInt32HostToBig(*pRawBitmapData));
 #else
             // Convert the xRGB pixel data to RGBA.
             //                                                          PowerPC         Intel
             //                                                          -------         -----
             // Bytes in memory are                                      x R G B         x R G B
             // *pRawBitmapData loads as 32-bit word into register       xRGB            BGRx
-            // NSSwapHostLongToBig() swaps this to                      xRGB            xRGB
+            // CFSwapInt32HostToBig() swaps this to                     xRGB            xRGB
             // Shifting left 8 bits yields ('0' denotes all zero bits)  RGB0            RGB0
             // Bitwise ORing with *pRawMaskData byte yields             RGBA            RGBA
-            // NSSwapBigLongToHost() swaps this to                      RGBA            ABGR
+            // CFSwapInt32BigToHost() swaps this to                     RGBA            ABGR
             // Bytes in memory after they're stored as a 32-bit word    R G B A         R G B A
-            *pRawBitmapData = NSSwapBigLongToHost((NSSwapHostLongToBig(*pRawBitmapData) << 8) | *pRawMaskData++);
+            *pRawBitmapData = CFSwapInt32BigToHost((CFSwapInt32HostToBig(*pRawBitmapData) << 8) | *pRawMaskData++);
 #endif
             ++pRawBitmapData;
         }
