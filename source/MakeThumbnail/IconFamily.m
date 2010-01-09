@@ -38,6 +38,10 @@ enum {
 };
 #endif
 
+// Necessary on 10.5 for Preview's "New with Clipboard" menu item to see the IconFamily data.
+#define ICONFAMILY_UTI @"com.apple.icns"
+// Determined by using Pasteboard Manager to put com.apple.icns data on the clipboard. Alternatively, you can determine this by copying an application to the clipboard using the Finder (select an application and press cmd-C).
+#define ICONFAMILY_PBOARD_TYPE @"'icns' (CorePasteboardFlavorType 0x69636E73)"
 
 @interface IconFamily (Internals)
 
@@ -104,6 +108,24 @@ enum {
             [self autorelease];
             return nil;
         }
+    }
+    return self;
+}
+
+- initWithData:(NSData *)data
+{
+    self = [self init];
+    if (self) {
+        Handle storageMem = NULL;
+
+        OSStatus err = PtrToHand([data bytes], &storageMem, (long)[data length]);
+        if( err != noErr )
+        {
+            [self release];
+            return nil;
+        }
+
+        hIconFamily = (IconFamilyHandle)storageMem;
     }
     return self;
 }
@@ -1036,18 +1058,14 @@ enum {
     return YES;
 }
 
+- (NSData *) data
+{
+    return [NSData dataWithBytes:*hIconFamily length:GetHandleSize((Handle)hIconFamily)];
+}
+
 - (BOOL) writeToFile:(NSString*)path
 {
-    NSData* iconData = nil;
-
-//    HLock((Handle)hIconFamily); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
-    
-    iconData = [NSData dataWithBytes:*hIconFamily length:GetHandleSize((Handle)hIconFamily)];
-    BOOL success = [iconData writeToFile:path atomically:NO];
-
-//    HUnlock((Handle)hIconFamily); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
-
-    return success;
+    return [[self data] writeToFile:path atomically:NO];
 }
 
 @end
@@ -1509,36 +1527,14 @@ enum {
 
 @end
 
-// Methods for interfacing with the Carbon Scrap Manager (analogous to and
-// interoperable with the Cocoa Pasteboard).
+// Methods for interfacing with the Cocoa Pasteboard.
 
 @implementation IconFamily (ScrapAdditions)
 
 + (BOOL) canInitWithScrap
 {
-    ScrapRef scrap = NULL;
-    ScrapFlavorInfo* scrapInfos = NULL;
-    UInt32 numInfos = 0;
-    UInt32 i = 0;
-    BOOL canInit = NO;
-
-    GetCurrentScrap(&scrap);
-
-    GetScrapFlavorCount(scrap,&numInfos);
-    scrapInfos = malloc( sizeof(ScrapFlavorInfo)*numInfos );
-    if (scrapInfos) {
-      GetScrapFlavorInfoList(scrap, &numInfos, scrapInfos);
-
-      for( i=0; i<numInfos; i++ )
-      {
-          if( scrapInfos[i].flavorType == 'icns' )
-              canInit = YES;
-      }
-
-      free( scrapInfos );
-    }
-
-    return canInit;
+    NSArray *types = [[NSPasteboard generalPasteboard] types];
+    return [types containsObject:ICONFAMILY_UTI] || [types containsObject:ICONFAMILY_PBOARD_TYPE];
 }
 
 + (IconFamily*) iconFamilyWithScrap
@@ -1548,37 +1544,31 @@ enum {
 
 - initWithScrap
 {
-    Handle storageMem = NULL;
-    Size amountMem = 0;
-    ScrapRef scrap;
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
 
-    self = [super init];
-
-    if( self )
+    NSData *data = [pboard dataForType:ICONFAMILY_UTI];
+    if( !data )
+        data = [pboard dataForType:ICONFAMILY_PBOARD_TYPE];
+    if( !data )
     {
-        GetCurrentScrap(&scrap);
-
-        GetScrapFlavorSize( scrap, 'icns', &amountMem );
-
-        storageMem = NewHandle(amountMem);
-
-        GetScrapFlavorData( scrap, 'icns', &amountMem, *storageMem );
-
-        hIconFamily = (IconFamilyHandle)storageMem;
+        [self release];
+        return nil;
     }
+
+    self = [self initWithData:data];
+
     return self;
 }
 
 - (BOOL) putOnScrap
 {
-    ScrapRef scrap = NULL;
+    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
 
-    ClearCurrentScrap();
-    GetCurrentScrap(&scrap);
+    [pboard declareTypes:[NSArray arrayWithObjects:ICONFAMILY_UTI, ICONFAMILY_PBOARD_TYPE, nil] owner:self];
+    NSData *data = [self data];
+    [pboard setData:data forType:ICONFAMILY_UTI];
+    [pboard setData:data forType:ICONFAMILY_PBOARD_TYPE];
 
-//    HLock((Handle)hIconFamily); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
-    PutScrapFlavor( scrap, 'icns', kScrapFlavorMaskNone, GetHandleSize((Handle)hIconFamily), *hIconFamily);
-//    HUnlock((Handle)hIconFamily); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
     return YES;
 }
 
