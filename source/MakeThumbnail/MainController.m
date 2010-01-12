@@ -155,6 +155,36 @@
     }
 }
 
+- (IBAction)saveImageToCustomIcon:(id)sender
+{
+	NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setAllowsMultipleSelection:NO];
+    [openPanel setCanChooseFiles:YES];
+    [openPanel setCanChooseDirectories:YES];
+    long result;
+    
+    result = [openPanel runModalForDirectory:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"] file:nil types:nil];
+    if (result == NSOKButton) {
+        NSImageInterpolation imageInterpolation;
+        NSImage* image;
+        IconFamily* iconFamily;
+
+        image = [thumbnailImageView image];
+        imageInterpolation = [[imageInterpolationPopUpButton selectedItem] tag];
+        iconFamily = [IconFamily iconFamilyWithThumbnailsOfImage:image
+                                         usingImageInterpolation:imageInterpolation];
+
+        NSString* path = [[openPanel filenames] objectAtIndex:0];
+        BOOL isDir = NO;
+        [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+
+        if ( isDir )
+            [iconFamily setAsCustomIconForDirectory:path];
+        else
+            [iconFamily setAsCustomIconForFile:path];
+    }
+}
+
 - (IBAction)removeCustomIcon:(id)sender
 {
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
