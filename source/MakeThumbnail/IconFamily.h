@@ -174,6 +174,10 @@
 
 + (BOOL) removeCustomIconFromFile:(NSString*)path;
 
+//Same as the -removeCustomIconFromFile: method, but for folders (directories).
+
++ (BOOL) removeCustomIconFromDirectory:(NSString*)path;
+
 @end
 
 // Methods for interfacing with the Carbon Scrap Manager (analogous to and

@@ -199,7 +199,12 @@
     result = [openPanel runModalForDirectory:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"] file:nil types:nil];
     if (result == NSOKButton) {
         NSString* path = [[openPanel filenames] objectAtIndex:0];
-        [IconFamily removeCustomIconFromFile:path];
+        BOOL isDir = NO;
+        [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+        if( isDir )
+            [IconFamily removeCustomIconFromDirectory:path];
+        else
+            [IconFamily removeCustomIconFromFile:path];
     }
 }
 

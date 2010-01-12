@@ -1064,6 +1064,45 @@ enum {
     return YES;
 }
 
++ (BOOL) removeCustomIconFromDirectory:(NSString*)path
+{
+    FSRef targetFolderFSRef;
+    if( [path getFSRef:&targetFolderFSRef createFileIfNecessary:NO] ) {
+        OSStatus result;
+        struct FSCatalogInfo catInfo;
+        struct FileInfo *finderInfo = (struct FileInfo *)catInfo.finderInfo;
+
+        result = FSGetCatalogInfo( &targetFolderFSRef,
+                                  kFSCatInfoFinderInfo,
+                                  &catInfo,
+                                  /*outName*/ NULL,
+                                  /*fsSpec*/ NULL,
+                                  /*parentRef*/ NULL);
+        if( result != noErr )
+            return NO;
+
+        // Tell the Finder that the folder no longer has a custom icon.
+        finderInfo->finderFlags &= ~( kHasCustomIcon | kHasBeenInited );
+
+        result = FSSetCatalogInfo( &targetFolderFSRef,
+                          kFSCatInfoFinderInfo,
+                          &catInfo);
+        if( result != noErr )
+            return NO;
+
+        // Notify the system that the target directory has changed, to give Finder
+        // the chance to find out about its new custom icon.
+        result = FNNotify( &targetFolderFSRef, kFNDirectoryModifiedMessage, kNilOptions );
+        if (result != noErr)
+            return NO;
+    }
+
+    if( ! [[NSFileManager defaultManager] removeFileAtPath:[path stringByAppendingPathComponent:@"Icon\r"] handler:nil] )
+        return NO;
+	
+    return YES;
+}
+
 - (NSData *) data
 {
     return [NSData dataWithBytes:*hIconFamily length:GetHandleSize((Handle)hIconFamily)];
