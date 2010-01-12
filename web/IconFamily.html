@@ -106,6 +106,7 @@ id iconFamily = [IconFamily iconFamilyWithThumbnailsOfImage:anImage];<br />
 <div class="methodgroup">
 	<div class="methodgroupname">Assigning and removing custom file icons</div>
 	<div class="methodsingroup">
+	<a href="#C_removeCustomIconFromDirectory_">+ removeCustomIconFromDirectory:</a><br />
 	<a href="#C_removeCustomIconFromFile_">+ removeCustomIconFromFile:</a><br />
 	<a href="#setAsCustomIconForDirectory_">- setAsCustomIconForDirectory:</a><br />
 	<a href="#setAsCustomIconForDirectory_withCompatibility_">- setAsCustomIconForDirectory:withCompatibility:</a><br />
@@ -191,6 +192,12 @@ id iconFamily = [IconFamily iconFamilyWithThumbnailsOfImage:anImage];<br />
 <div class="methoddoc">
 <div class="methodname">+ (IconFamily*) iconFamilyWithThumbnailsOfImage:(<a href="http://developer.apple.com/documentation/Cocoa/Reference/ApplicationKit/Classes/NSImage_Class/index.html">NSImage</a>*)image usingImageInterpolation:(NSImageInterpolation)imageInterpolation</div>
 <p>Returns an autoreleased IconFamily initialized using the <span class="methodname"><a href="#initWithThumbnailsOfImage_usingImageInterpolation_">-initWithThumbnailsOfImage:usingImageInterpolation:</a></span> method.</p>
+</div>
+
+<a name="C_removeCustomIconFromDirectory_"></a>
+<div class="methoddoc">
+<div class="methodname">+ (BOOL) removeCustomIconFromDirectory:(NSString*)path</div>
+<p>Removes the custom icon (if any) from the specified folder.</p>
 </div>
 
 <a name="C_removeCustomIconFromFile_"></a>

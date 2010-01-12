@@ -1,4 +1,4 @@
-/*<group=Page Layout>*/
+/* @group Page Layout */
 
 body {
 	padding: 16px 0;
@@ -50,7 +50,7 @@ body {
 	padding: 24px 0 34px;
 }
 
-/*<group=Sidebar>*/
+/* @group Sidebar */
 
 .sidebar {
 	padding: 0 30px 0 0;
@@ -93,11 +93,11 @@ body {
 	font-size: 10px;
 	}
 	
-/*</group>*/
+/* @end */
 	
-/*</group>*/
+/* @end */
 
-/*<group=Global Tag Styles>*/
+/* @group Global Tag Styles */
 
 h1, h2, h3, h4 {
 	margin: 0;
@@ -182,9 +182,9 @@ code {
 	font: 14px Georgia, Times, serif;
 }
 	
-/*</group>*/
+/* @end */
 
-/*<group=Cocoa>*/
+/* @group Cocoa */
 
 .cocoaintro {
 	margin: 0 36px 0 36px;
@@ -205,9 +205,9 @@ code {
 	font-weight: normal;
 }
 
-/*</group>*/
+/* @end */
 
-/*<group=Photography>*/
+/* @group Photography */
 
 .picture {
 	text-align: center;
@@ -271,9 +271,9 @@ a.rightarrow:hover {
 	background: url(images/button-right-lit.png) no-repeat;
 }
 	
-/*</group>*/
+/* @end */
 
-/*<group=Software>*/
+/* @group Software */
 
 a.projectlink {
 	color: #ff8000;
@@ -288,9 +288,9 @@ a.projectlink {
 	font-size: 8pt;
 }
 	
-/*</group>*/
+/* @end */
 
-/*<group=WebLog>*/
+/* @group WebLog */
 
 .logentry {
 	border-bottom: 1px dotted #808080;
@@ -333,7 +333,7 @@ a.projectlink {
 	font: 14px/150% Georgia, Times, serif;
 }
 	
-/*</group>*/
+/* @end */
 
 .linksheading		{ color: #ff8000; }
 .linksheadingwide {
