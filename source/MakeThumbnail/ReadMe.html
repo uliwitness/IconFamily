@@ -80,7 +80,7 @@ of using the IconFamily code to build Popup Dock.  Ben Haller, proprietor of
 contributions and dedication to get the 0.4 release of IconFamily out the
 door.</p>
 
-<p>Sven Janssen, Peter Hosey, Conor Dearden, and Elliot Glaysher reported bugs and contributed patches to modernize the IconFamily code for Tiger in the 0.9.x releases.</p>
+<p>Sven Janssen, Peter Hosey, Conor Dearden, and Elliot Glaysher reported bugs and contributed patches to modernize the IconFamily code and keep the project going in the 0.9.x releases.</p>
 
 <p>Dave MacLachlan of Google has contributed support for 256x256 and 512x512 icon family elements that I've rolled into a 0.9.3 release.</p>
 
@@ -138,14 +138,33 @@ something or other. :-)</p>
 
 <h3><a name="history">Version History</a></h3>
 
+<p><span class="newsdate">Version 0.9.4 - 2010-01-12</span></p>
+
+<p>64-bit support and various fixes (big thanks to Peter Hosey and Jens Ayton for making the much-needed improvements in this release!)</p>
+
+<ul>
+	<li>Moved off 32-bit-only Carbon Scrap Manager APIs. IconFamily's "Scrap" API methods (<code>+canInitWithScrap</code>, etc.) now use NSPasteboard under the hood.</li>
+	<li>Project now builds for Intel 64-bit (<code>x86_64</code>).</li>
+	<li>New "<code>icns-pasteboard</code>" project adds command-line tools for testing copy/paste of <code>.icns</code> data.</li>
+	<li>Fixed setting the Invisible bit on the "<code>Icon\r</code>" file inside a directory when setting a custom icon on that directory. Patch submitted by Timothy McIntosh in SF #2794260; thanks!</li>
+	<li>Added a menu item to the "MakeThumbnail" example project for applying custom icons to files and folders.</li>
+	<li>Added a -finalize method, to allow use by garbage-collected client apps.</li>
+	<li>Enabled more warnings when building.</li>
+	<li>Fixed build warnings, and some potential leaks.</li>
+</ul>
+
+<p>See the svn commit log for a complete list of changes since 0.9.3 (which was r27).</p>
+
+<p>With Mac OS X up to release 10.6.2, it's about time we modernized the IconFamily code base for the greater convenience of most developers, who are probably developing on 10.6.x and targeting a baseline OS of 10.4 at the earliest.  As such, <strong>0.9.4 will be the last release of IconFamily to specifically maintain build compatibility with pre-10.4 versions of Mac OS X.</strong>  We won't be going out of our way to break things badly for anyone who might need to work with very old versions of Mac OS X ("Bueller? Bueller? ..."), but there's no reason to penalize the majority of clients to accommodate those rare cases.  It's time to update the project file to Xcode 3.x, and adopt 10.4-and-later API conventions such as the <code>NSUInteger</code> and <code>CGFloat</code> types.</p>
+
 <p><span class="newsdate">Version 0.9.3 - 2008-05-03</span></p>
 
 <p>Incorporated enhancements contributed by Dave MacLachlan @ Google into a new, "0.9.3" release (these changes have been in svn since 2007-11-09):</p>
 
 <ul>
 <li>Creation and retrieval of 256x256 (Tiger and later) and 512x512 (Leopard and later) ARGB icon family elements.</li>
-<li>Removed unnecessary <tt>HLock()/HUnlock()</tt> calls. (Handle-based memory isn't really compacted anymore, so blocks can't move.)</li>
-<li>Added guard against <tt>NULL</tt> "scrapInfos" pointer in <tt>+canInitWithScrap</tt>.</li>
+<li>Removed unnecessary <code>HLock()/HUnlock()</code> calls. (Handle-based memory isn't really compacted anymore, so blocks can't move.)</li>
+<li>Added guard against <code>NULL</code> "scrapInfos" pointer in <code>+canInitWithScrap</code>.</li>
 </ul>
 
 <p><span class="newsdate">Moving Day - 2006-08-19</span></p>
@@ -157,8 +176,8 @@ something or other. :-)</p>
 <p><span class="newsdate">Version 0.9.2 - March 29, 2006</span></p>
 
 <ul>
-<li>Fixed a regression in <tt>-setAsCustomIconForDirectory:...</tt> that appeared in 0.9</li>
-<li><tt>-setAsCustomIconForFile:...</tt> now preserves the target file's previous modification time, thanks to an enhancement contributed by Elliot Glaysher</li>
+<li>Fixed a regression in <code>-setAsCustomIconForDirectory:...</code> that appeared in 0.9</li>
+<li><code>-setAsCustomIconForFile:...</code> now preserves the target file's previous modification time, thanks to an enhancement contributed by Elliot Glaysher</li>
 </ul>
 
 <p><span class="newsdate">Version 0.9.1 - March 12, 2006</span></p>
@@ -170,8 +189,8 @@ something or other. :-)</p>
 <p><span class="newsdate">Version 0.9 - March 9, 2006</span></p>
 
 <ul>
-<li>Fixed byte order handling in <tt>-bitmapImageRepWithAlphaForIconFamilyElement:</tt> to work correctly on Intel</li>
-<li>Replaced all usage of the deprecated <tt>FSSpec</tt> type with appropriate calls and use of <tt>FSRef</tt> (thanks to patches contributed by Peter Hosey and Conor Dearden!)</li>
+<li>Fixed byte order handling in <code>-bitmapImageRepWithAlphaForIconFamilyElement:</code> to work correctly on Intel</li>
+<li>Replaced all usage of the deprecated <code>FSSpec</code> type with appropriate calls and use of <code>FSRef</code> (thanks to patches contributed by Peter Hosey and Conor Dearden!)</li>
 <li>Fixed build warnings that appeared on Tiger, and removed some old cruft</li>
 <li>Updated project file to Xcode 2.2</li>
 <li>Tested under Mac OS X 10.4.5, on both Intel and PPC hardware</li>
@@ -181,8 +200,8 @@ something or other. :-)</p>
 Minor changes to fix two warnings that appeared when compiling IconFamily 0.5 on Mac OS X 10.3 (Panther):</p>
 
 <ul>
-<li>Replaced occurrences of <tt>'????'</tt> with <tt>kUnknownType</tt></li>
-<li>Disambiguated order of operations in expressions involving <tt>*pRawBitmapData++</tt></li>
+<li>Replaced occurrences of <code>'????'</code> with <code>kUnknownType</code></li>
+<li>Disambiguated order of operations in expressions involving <code>*pRawBitmapData++</code></li>
 </ul>
 
 <p><span class="newsdate">Version 0.5 - August 6, 2002</span><br />
@@ -190,13 +209,13 @@ Updated for compatibility with Mac OS X 10.2:</p>
 
 <ul>
 
-<li>Fixed <tt>-init</tt> method so it works on both 10.1.x and 10.2</li>
+<li>Fixed <code>-init</code> method so it works on both 10.1.x and 10.2</li>
 
-<li>Added calls to <tt>FNNotify()</tt> to improve Finder synchronization</li>
+<li>Added calls to <code>FNNotify()</code> to improve Finder synchronization</li>
 
 </ul>
 
-<p>Applications that rely on the <tt>-init</tt> method that was added in
+<p>Applications that rely on the <code>-init</code> method that was added in
 Version 0.4 should be recompiled with this new version of the IconFamily
 class for compatibility with Mac OS X 10.2.</p>
 
@@ -206,15 +225,15 @@ methods submitted by David Remahl:</p>
 
 <ul>
 
-<li><tt>-setAsCustomIconForDirectory:</tt></li>
+<li><code>-setAsCustomIconForDirectory:</code></li>
 
-<li><tt>-setAsCustomIconForDirectory:withCompatibility:</tt></li>
+<li><code>-setAsCustomIconForDirectory:withCompatibility:</code></li>
 
 </ul>
 
 <p>There is also a new method in the "CarbonFSSpecCreation" category on
-NSString, which permits getting an <tt>FSRef</tt> for a given path.  The prior
-method to get an <tt>FSSpec</tt> is now implemented in terms of this
+NSString, which permits getting an <code>FSRef</code> for a given path.  The prior
+method to get an <code>FSSpec</code> is now implemented in terms of this
 method.</p>
 
 <p><span class="newsdate">Version 0.4 - May 2, 2002</span><br />
@@ -223,25 +242,25 @@ fixes for the 0.4 release, including:</p>
 
 <ul>
 
-<li>fixes for the <tt>-init</tt> and <tt>-setAsCustomIconOfFile:</tt>
+<li>fixes for the <code>-init</code> and <code>-setAsCustomIconOfFile:</code>
 methods</li>
 
-<li>a new <tt>+removeCustomIconFromFile:</tt> class method</li>
+<li>a new <code>+removeCustomIconFromFile:</code> class method</li>
 
 <li>support for creating 8-bit indexed-color icon family elements</li>
 
 <li>respect for exiting type/creator codes in
-<tt>-setAsCustomIconForFile:...</tt> A new "compatibility" parameter to this
+<code>-setAsCustomIconForFile:...</code> A new "compatibility" parameter to this
 method causes "large" and "small" 8-bit images and their 1-bit masks to be
 stored as independent resources in addition to being stored as members of the
 icon family resource</li>
 
-<li>a fix for <tt>-writeToFile:</tt> (previously there was a problem with
+<li>a fix for <code>-writeToFile:</code> (previously there was a problem with
 certain kinds of paths)</li>
 
-<li>a probably more efficient alternative to going through <tt>-tiffData</tt>
+<li>a probably more efficient alternative to going through <code>-tiffData</code>
 to get bitmap image representations in
-<tt>-initWithThumbnailsOfImage:usingImageInterpolation:</tt></li>
+<code>-initWithThumbnailsOfImage:usingImageInterpolation:</code></li>
 
 </ul>
 
@@ -249,7 +268,7 @@ to get bitmap image representations in
 ready-to-go 0.4 release!</p>
 
 <p>I've also fixed a potential divide-by-zero error in
-<tt>+get32BitdataFromBitmapImageRep:</tt>.</p>
+<code>+get32BitdataFromBitmapImageRep:</code>.</p>
 
 <p><span class="newsdate">Version 0.3 - January 26, 2002</span><br />
 David Remahl contributed a number of useful extensions and fixes for this
@@ -261,24 +280,24 @@ release, including:</p>
 icon, from the Finder icon of a specified file, or from the Carbon
 Scrap Manager (Cocoa Pasteboard)</li>
 
-<li>a <tt>-putOnScrap</tt> method for placing a copy of an IconFamily on
+<li>a <code>-putOnScrap</code> method for placing a copy of an IconFamily on
 the Scrap (Pasteboard)</li>
 
-<li>code to undo the effects of premultiplied alpha in <tt>get32BitDataFromBitmapImageRep:</tt></li>
+<li>code to undo the effects of premultiplied alpha in <code>get32BitDataFromBitmapImageRep:</code></li>
 
 <li>a fix for 1-bit mask generation</li>
 
 </ul>
 
 <p>Mike Margolis and David Remahl jointly suggested the use of
-NSGraphicsContext's <tt>-setImageInterpolation:</tt> method to specify the
+NSGraphicsContext's <code>-setImageInterpolation:</code> method to specify the
 resampling algorithm to use.  By default, the IconFamily class now uses
-<tt>NSImageInterpolationHigh</tt>, which produces higher-quality thumbnails
+<code>NSImageInterpolationHigh</code>, which produces higher-quality thumbnails
 than previous versions of the code, but you can easily choose from among
-<tt>Default/None/Low/High</tt>.</p>
+<code>Default/None/Low/High</code>.</p>
 
 <p>I added an accessory view to MakeThumbnail's "Save" panel to facilitate
-experimenting with the various <tt>NSImageInterpolation...</tt> settings that
+experimenting with the various <code>NSImageInterpolation...</code> settings that
 are now available.  I've also added generation of "small" (16x16) icons, fixed
 memory leaks, and fixed a bug that affected the display size of the loaded
 image in the MakeThumbnail example under Mac OS X 10.0 and later versions.</p>
