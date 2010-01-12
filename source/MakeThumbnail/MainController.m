@@ -67,6 +67,9 @@
 - (IBAction)loadImage:(id)sender
 {
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setAllowsMultipleSelection:NO];
+    [openPanel setCanChooseFiles:YES];
+    [openPanel setCanChooseDirectories:NO];
     NSArray* imageFileTypes = [NSImage imageFileTypes];
     long result;
     
@@ -188,6 +191,9 @@
 - (IBAction)removeCustomIcon:(id)sender
 {
     NSOpenPanel* openPanel = [NSOpenPanel openPanel];
+    [openPanel setAllowsMultipleSelection:YES];
+    [openPanel setCanChooseFiles:YES];
+    [openPanel setCanChooseDirectories:YES];
     long result;
     
     result = [openPanel runModalForDirectory:[NSHomeDirectory() stringByAppendingPathComponent:@"Desktop"] file:nil types:nil];
