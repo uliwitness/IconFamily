@@ -938,9 +938,11 @@ enum {
                               /*outName*/ NULL,
                               /*fsSpec*/ NULL,
                               /*parentRef*/ NULL );
-    if( result == fnfErr ) {
+    // This shouldn't fail because we just created the file above.
+    if( result != noErr )
+        return NO;
+    else {
         // The file doesn't exist. Prepare to create it.
-
         struct FileInfo *finderInfo = (struct FileInfo *)catInfo.finderInfo;
 
         // These are the file type and creator given to Icon files created by
@@ -962,8 +964,13 @@ enum {
 
         // Standard reserved-field practice.
         finderInfo->reservedField = 0;
-    } else if( result != noErr )
-        return NO;
+
+        // Update the catalog info:
+        result = FSSetCatalogInfo(&iconrFSRef, kFSCatInfoFinderInfo, &catInfo);
+
+        if (result != noErr)
+            return NO;
+    }
     
     // Get the filename, to be applied to the Icon file.
     filename.length = [@"Icon\r" length];
