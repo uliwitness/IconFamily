@@ -9,7 +9,8 @@ This fork of IconFamily by **Alex Zielenski** adds the following:
 * Usage of ```kIconServices[size]PixelDataARGB``` types
 * Correct encoding of image data under Lion
 * Removal of deprecated APIs and replacement of equivalent up to date ones
-* Lossless encoding using the Accelerate APIs for 32 bit and 8 bit types
+* Lossless encoding using the Accelerate APIs for 32 bit and 24 bit types
+* Implementation of ```NSPasteboardReading``` and ```NSPasteboardWriting```
 
 ##Purpose
 
