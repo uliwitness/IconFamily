@@ -646,6 +646,9 @@ enum {
 
 - (BOOL) setIconFamilyElement:(OSType)elementType fromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep
 {
+	if (!bitmapImageRep)
+		return NO;
+	
     Handle hRawData = NULL;
     OSErr result;
 
@@ -674,10 +677,27 @@ enum {
 	case kThumbnail8BitMask:
 	    hRawData = [IconFamily get8BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:128];
 	    break;
+	
 	// 'ih48' 48x48 32-bit RGB image
 	case kHuge32BitData:
 		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
 		break;
+			
+	// 'h8mk' 48x49 8-bit alpha mask
+	case kHuge8BitMask:
+		hRawData = [IconFamily get8BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;
+			
+	// 'ich#' 48x48 1-bit alpha mask
+	case kHuge1BitMask:
+		hRawData = [IconFamily get1BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;
+            
+	// 'ich8' 48x48 8-bit indexed image data
+	case kHuge8BitData:
+		hRawData = [IconFamily get8BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;		
+	
 	// 'il32' 32x32 32-bit RGB image
 	case kLarge32BitData:
 	    hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
