@@ -38,7 +38,7 @@
 // You can also write an icon family to an .icns file using the -writeToFile:
 // method.
 
-@interface IconFamily : NSObject
+@interface IconFamily : NSObject <NSPasteboardReading, NSPasteboardWriting>
 {
     IconFamilyHandle hIconFamily;
 }
@@ -178,13 +178,7 @@
 
 + (BOOL) removeCustomIconFromDirectory:(NSString*)path;
 
-@end
+- (NSData *)data;
++ (BOOL)canInitWithPasteboard:(NSPasteboard *)pasteboard;
 
-// Methods for interfacing with the Carbon Scrap Manager (analogous to and
-// interoperable with the Cocoa Pasteboard).
-@interface IconFamily (ScrapAdditions)
-+ (BOOL) canInitWithScrap;
-+ (IconFamily*) iconFamilyWithScrap;
-- initWithScrap;
-- (BOOL) putOnScrap;
 @end

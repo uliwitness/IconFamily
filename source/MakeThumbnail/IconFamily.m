@@ -1160,8 +1160,38 @@ enum {
     return [[self data] writeToFile:path atomically:NO];
 }
 
+
+#pragma mark - NSPasteboardReading
+
+- (id)initWithPasteboardPropertyList:(id)data ofType:(NSString *)type {	
+    return [self initWithData:data];
+}
+
++ (NSArray *)readableTypesForPasteboard:(NSPasteboard *)pasteboard {
+	return [NSArray arrayWithObjects:ICONFAMILY_UTI, ICONFAMILY_PBOARD_TYPE, nil];
+}
+
++ (NSPasteboardReadingOptions)readingOptionsForType:(NSString *)type pasteboard:(NSPasteboard *)pasteboard {
+	return NSPasteboardReadingAsData;
+}
+
++ (BOOL)canInitWithPasteboard:(NSPasteboard *)pasteboard {
+	return [pasteboard canReadItemWithDataConformingToTypes:[self.class readableTypesForPasteboard:pasteboard]];
+}
+
+#pragma mark - NSPasteboardWriting
+
+- (NSArray *)writableTypesForPasteboard:(NSPasteboard *)pasteboard {
+	return [self.class readableTypesForPasteboard:pasteboard];
+}
+
+- (id)pasteboardPropertyListForType:(NSString *)type {
+	return self.data;
+}
+
 @end
 
+#pragma mark - Internals
 @implementation IconFamily (Internals)
 
 + (NSImage*) resampleImage:(NSImage*)image toIconWidth:(int)iconWidth usingImageInterpolation:(NSImageInterpolation)imageInterpolation
@@ -1666,54 +1696,5 @@ enum {
 
     return YES;
 }
-
 @end
-
-// Methods for interfacing with the Cocoa Pasteboard.
-
-@implementation IconFamily (ScrapAdditions)
-
-+ (BOOL) canInitWithScrap
-{
-    NSArray *types = [[NSPasteboard generalPasteboard] types];
-    return [types containsObject:ICONFAMILY_UTI] || [types containsObject:ICONFAMILY_PBOARD_TYPE];
-}
-
-+ (IconFamily*) iconFamilyWithScrap
-{
-    return [[[IconFamily alloc] initWithScrap] autorelease];
-}
-
-- initWithScrap
-{
-    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
-
-    NSData *data = [pboard dataForType:ICONFAMILY_UTI];
-    if( !data )
-        data = [pboard dataForType:ICONFAMILY_PBOARD_TYPE];
-    if( !data )
-    {
-        [self release];
-        return nil;
-    }
-
-    self = [self initWithData:data];
-
-    return self;
-}
-
-- (BOOL) putOnScrap
-{
-    NSPasteboard *pboard = [NSPasteboard generalPasteboard];
-
-    [pboard declareTypes:[NSArray arrayWithObjects:ICONFAMILY_UTI, ICONFAMILY_PBOARD_TYPE, nil] owner:self];
-    NSData *data = [self data];
-    [pboard setData:data forType:ICONFAMILY_UTI];
-    [pboard setData:data forType:ICONFAMILY_PBOARD_TYPE];
-
-    return YES;
-}
-
-@end
-
 
