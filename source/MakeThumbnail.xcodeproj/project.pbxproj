@@ -7,42 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0515FC2F09BD137A00907DF2 /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = 0515FC2909BD137A00907DF2 /* IconFamily.m */; };
-		0515FC3309BD138B00907DF2 /* MarinFarm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0515FC3209BD138B00907DF2 /* MarinFarm.jpg */; };
-		0515FC3509BD139300907DF2 /* MacOSXPublicBeta.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0515FC3409BD139300907DF2 /* MacOSXPublicBeta.icns */; };
-		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
-		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		FAD5D2F11530E8B400722EB8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD5D2F01530E8B400722EB8 /* Carbon.framework */; };
-		FAD5D2F41530E8C000722EB8 /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D2F31530E8C000722EB8 /* NSString+CarbonFSRefCreation.m */; };
-		FAD5D2F61530EA0E00722EB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D2F51530EA0E00722EB8 /* MainMenu.xib */; };
-		FAD5D2F91530EA2700722EB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D2F81530EA2700722EB8 /* AppDelegate.m */; };
-		FAD5D2FB1530EACB00722EB8 /* appStore.icns in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D2FA1530EACB00722EB8 /* appStore.icns */; };
 		FAD5D2FD1530F0DA00722EB8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD5D2FC1530F0DA00722EB8 /* Accelerate.framework */; };
+		FAD5D3051531046100722EB8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D3041531046100722EB8 /* main.m */; };
+		FAD5D3091531046700722EB8 /* appStore.icns in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D3061531046700722EB8 /* appStore.icns */; };
+		FAD5D30A1531046700722EB8 /* MacOSXPublicBeta.icns in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D3071531046700722EB8 /* MacOSXPublicBeta.icns */; };
+		FAD5D30B1531046700722EB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D3081531046700722EB8 /* MainMenu.xib */; };
+		FAD5D30C1531047000722EB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D2FF1531045A00722EB8 /* AppDelegate.m */; };
+		FAD5D30D1531047300722EB8 /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D3011531045A00722EB8 /* IconFamily.m */; };
+		FAD5D30E1531047300722EB8 /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D3031531045A00722EB8 /* NSString+CarbonFSRefCreation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0515FC2809BD137A00907DF2 /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IconFamily.h; sourceTree = SOURCE_ROOT; };
-		0515FC2909BD137A00907DF2 /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IconFamily.m; sourceTree = SOURCE_ROOT; };
-		0515FC3209BD138B00907DF2 /* MarinFarm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MarinFarm.jpg; sourceTree = SOURCE_ROOT; };
-		0515FC3409BD139300907DF2 /* MacOSXPublicBeta.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MacOSXPublicBeta.icns; sourceTree = SOURCE_ROOT; };
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
-		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* MakeThumbnail_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeThumbnail_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MakeThumbnail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakeThumbnail.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAD5D2F01530E8B400722EB8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		FAD5D2F21530E8C000722EB8 /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CarbonFSRefCreation.h"; sourceTree = "<group>"; };
-		FAD5D2F31530E8C000722EB8 /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CarbonFSRefCreation.m"; sourceTree = "<group>"; };
-		FAD5D2F51530EA0E00722EB8 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
-		FAD5D2F71530EA2700722EB8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		FAD5D2F81530EA2700722EB8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		FAD5D2FA1530EACB00722EB8 /* appStore.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appStore.icns; sourceTree = "<group>"; };
 		FAD5D2FC1530F0DA00722EB8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		FAD5D2FE1531045A00722EB8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Classes/AppDelegate.h; sourceTree = "<group>"; };
+		FAD5D2FF1531045A00722EB8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Classes/AppDelegate.m; sourceTree = "<group>"; };
+		FAD5D3001531045A00722EB8 /* IconFamily.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = IconFamily.h; path = Classes/IconFamily.h; sourceTree = "<group>"; };
+		FAD5D3011531045A00722EB8 /* IconFamily.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = IconFamily.m; path = Classes/IconFamily.m; sourceTree = "<group>"; };
+		FAD5D3021531045A00722EB8 /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSString+CarbonFSRefCreation.h"; path = "Classes/NSString+CarbonFSRefCreation.h"; sourceTree = "<group>"; };
+		FAD5D3031531045A00722EB8 /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSString+CarbonFSRefCreation.m"; path = "Classes/NSString+CarbonFSRefCreation.m"; sourceTree = "<group>"; };
+		FAD5D3041531046100722EB8 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Classes/main.m; sourceTree = "<group>"; };
+		FAD5D3061531046700722EB8 /* appStore.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = appStore.icns; path = Interface/appStore.icns; sourceTree = "<group>"; };
+		FAD5D3071531046700722EB8 /* MacOSXPublicBeta.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MacOSXPublicBeta.icns; path = Interface/MacOSXPublicBeta.icns; sourceTree = "<group>"; };
+		FAD5D3081531046700722EB8 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MainMenu.xib; path = Interface/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,12 +58,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				FAD5D2F21530E8C000722EB8 /* NSString+CarbonFSRefCreation.h */,
-				FAD5D2F31530E8C000722EB8 /* NSString+CarbonFSRefCreation.m */,
-				0515FC2809BD137A00907DF2 /* IconFamily.h */,
-				0515FC2909BD137A00907DF2 /* IconFamily.m */,
-				FAD5D2F71530EA2700722EB8 /* AppDelegate.h */,
-				FAD5D2F81530EA2700722EB8 /* AppDelegate.m */,
+				FAD5D2FE1531045A00722EB8 /* AppDelegate.h */,
+				FAD5D2FF1531045A00722EB8 /* AppDelegate.m */,
+				FAD5D3001531045A00722EB8 /* IconFamily.h */,
+				FAD5D3011531045A00722EB8 /* IconFamily.m */,
+				FAD5D3021531045A00722EB8 /* NSString+CarbonFSRefCreation.h */,
+				FAD5D3031531045A00722EB8 /* NSString+CarbonFSRefCreation.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -115,8 +111,8 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				FAD5D3041531046100722EB8 /* main.m */,
 				32CA4F630368D1EE00C91783 /* MakeThumbnail_Prefix.pch */,
-				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -124,12 +120,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				FAD5D2FA1530EACB00722EB8 /* appStore.icns */,
-				0515FC3209BD138B00907DF2 /* MarinFarm.jpg */,
-				0515FC3409BD139300907DF2 /* MacOSXPublicBeta.icns */,
+				FAD5D3061531046700722EB8 /* appStore.icns */,
+				FAD5D3071531046700722EB8 /* MacOSXPublicBeta.icns */,
+				FAD5D3081531046700722EB8 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				FAD5D2F51530EA0E00722EB8 /* MainMenu.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -190,11 +184,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				0515FC3309BD138B00907DF2 /* MarinFarm.jpg in Resources */,
-				0515FC3509BD139300907DF2 /* MacOSXPublicBeta.icns in Resources */,
-				FAD5D2F61530EA0E00722EB8 /* MainMenu.xib in Resources */,
-				FAD5D2FB1530EACB00722EB8 /* appStore.icns in Resources */,
+				FAD5D3091531046700722EB8 /* appStore.icns in Resources */,
+				FAD5D30A1531046700722EB8 /* MacOSXPublicBeta.icns in Resources */,
+				FAD5D30B1531046700722EB8 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,25 +197,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				0515FC2F09BD137A00907DF2 /* IconFamily.m in Sources */,
-				FAD5D2F41530E8C000722EB8 /* NSString+CarbonFSRefCreation.m in Sources */,
-				FAD5D2F91530EA2700722EB8 /* AppDelegate.m in Sources */,
+				FAD5D3051531046100722EB8 /* main.m in Sources */,
+				FAD5D30C1531047000722EB8 /* AppDelegate.m in Sources */,
+				FAD5D30D1531047300722EB8 /* IconFamily.m in Sources */,
+				FAD5D30E1531047300722EB8 /* NSString+CarbonFSRefCreation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		C01FCF4B08A954540054247B /* Debug */ = {
