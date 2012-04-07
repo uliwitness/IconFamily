@@ -13,7 +13,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)notification {
 	IconFamily *family = [IconFamily iconFamilyWithContentsOfFile:[[NSBundle mainBundle] pathForImageResource:@"appStore"]];
-	[family writeToFile:@"/Users/Alex/Desktop/appStore.icns"];
+//	[family writeToFile:@"/Users/Alex/Desktop/appStore.icns"];
 	
 	IconFamily *cpy = [IconFamily iconFamily];
 	
@@ -26,7 +26,7 @@
 	[cpy setIconFamilyElement:kIconServices16PixelDataARGB fromBitmapImageRep:[family bitmapImageRepWithAlphaForIconFamilyElement:kIconServices16PixelDataARGB]];	
 	
 	
-	[cpy writeToFile:@"/Users/Alex/Desktop/appStore2.icns"];
+//	[cpy writeToFile:@"/Users/Alex/Desktop/appStore2.icns"];
 }
 
 @end
