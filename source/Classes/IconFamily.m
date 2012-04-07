@@ -1458,8 +1458,6 @@ enum {
 	
 	if (((samplesPerPixel == 3) && (bitsPerPixel == 24)) || ((samplesPerPixel == 4) && (bitsPerPixel == 32)))
 	{
-		CGDeviceColor cgCol;
-
 		rawDataSize = pixelsWide * pixelsHigh;
 		hRawData = NewHandle( rawDataSize );
 		if (hRawData == NULL)
@@ -1471,11 +1469,11 @@ enum {
 			for (y = 0; y < pixelsHigh; y++) {
 				pSrc = bitmapData + y * bytesPerRow;
 				for (x = 0; x < pixelsWide; x++) {
-					cgCol.red = ((float)*(pSrc+1)) / 255;
-					cgCol.green = ((float)*(pSrc+2)) / 255;
-					cgCol.blue = ((float)*(pSrc+3)) / 255;
+					unsigned char r = *(pSrc + 1);
+					unsigned char g = *(pSrc + 2);
+					unsigned char b = *(pSrc + 3);
 					
-					*pDest++ = (0 << 24) | ((int)cgCol.red << 16) | ((int)cgCol.green << 8) | (int)cgCol.blue;
+					*pDest++ = (0 << 24) | (r << 16) | (g << 8) | b;
 	
 					pSrc+=4;
 				}
@@ -1484,11 +1482,11 @@ enum {
 			for (y = 0; y < pixelsHigh; y++) {
 				pSrc = bitmapData + y * bytesPerRow;
 				for (x = 0; x < pixelsWide; x++) {
-					cgCol.red = ((float)*(pSrc)) / 255;
-					cgCol.green = ((float)*(pSrc+1)) / 255;
-					cgCol.blue = ((float)*(pSrc+2)) / 255;
+					unsigned char r = *(pSrc);
+					unsigned char g = *(pSrc + 1);
+					unsigned char b = *(pSrc + 2);
 	
-					*pDest++ = (0 << 24) | ((int)cgCol.red << 16) | ((int)cgCol.green << 8) | (int)cgCol.blue;
+					*pDest++ = (0 << 24) | (r << 16) | (g << 8) | b;
 					
 					pSrc+=3;
 				}
