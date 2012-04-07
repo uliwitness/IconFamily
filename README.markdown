@@ -1,7 +1,15 @@
 #IconFamily class
-with "MakeThumbnail" example for Mac OS X
 
 by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, Elliot Glaysher, and Dave MacLachlan
+
+##Modifications
+
+This fork of IconFamily by **Alex Zielenski** adds the following:
+
+* Usage of ```kIconServices[size]PixelDataARGB``` types
+* Correct encoding of image data under Lion
+* Removal of deprecated APIs and replacement of equivalent up to date ones
+* Lossless encoding using the Accelerate APIs for 32 bit and 8 bit types
 
 ##Purpose
 
