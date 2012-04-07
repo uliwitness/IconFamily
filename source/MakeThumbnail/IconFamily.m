@@ -326,7 +326,7 @@ enum {
 		iconBitmap512x512 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 512, 512)];
 		[iconImage512x512 unlockFocus];
 		if (iconImage512x512) {
-			[self setIconFamilyElement:kIconServices256PixelDataARGB fromBitmapImageRep:iconBitmap512x512];
+			[self setIconFamilyElement:kIconServices512PixelDataARGB fromBitmapImageRep:iconBitmap512x512];
 			[iconBitmap512x512 release];
 		}
     }
@@ -349,8 +349,7 @@ enum {
       [iconImage128x128 unlockFocus];
       
       if (iconBitmap128x128) {
-        [self setIconFamilyElement:kThumbnail32BitData fromBitmapImageRep:iconBitmap128x128];
-        [self setIconFamilyElement:kThumbnail8BitMask  fromBitmapImageRep:iconBitmap128x128];
+		  [self setIconFamilyElement:kIconServices128PixelDataARGB fromBitmapImageRep:iconBitmap128x128];
         [iconBitmap128x128 release];
       }
     }
@@ -363,10 +362,7 @@ enum {
 		iconBitmap48x48 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 48, 48)];
 		[iconImage48x48 unlockFocus];
 		if (iconBitmap48x48) {
-			[self setIconFamilyElement:kHuge32BitData fromBitmapImageRep:iconBitmap48x48];
-			[self setIconFamilyElement:kHuge8BitData fromBitmapImageRep:iconBitmap48x48];
-			[self setIconFamilyElement:kHuge8BitMask fromBitmapImageRep:iconBitmap48x48];
-			[self setIconFamilyElement:kHuge1BitMask fromBitmapImageRep:iconBitmap48x48];
+			[self setIconFamilyElement:kIconServices48PixelDataARGB fromBitmapImageRep:iconBitmap48x48];
 			[iconBitmap48x48 release];
 		}
     }
@@ -379,10 +375,7 @@ enum {
       iconBitmap32x32 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 32, 32)];
       [iconImage32x32 unlockFocus];
       if (iconBitmap32x32) {
-        [self setIconFamilyElement:kLarge32BitData fromBitmapImageRep:iconBitmap32x32];
-        [self setIconFamilyElement:kLarge8BitData fromBitmapImageRep:iconBitmap32x32];
-        [self setIconFamilyElement:kLarge8BitMask fromBitmapImageRep:iconBitmap32x32];
-        [self setIconFamilyElement:kLarge1BitMask fromBitmapImageRep:iconBitmap32x32];
+        [self setIconFamilyElement:kIconServices32PixelDataARGB fromBitmapImageRep:iconBitmap32x32];
         [iconBitmap32x32 release];
       }
     }
@@ -395,10 +388,7 @@ enum {
       iconBitmap16x16 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 16, 16)];
       [iconImage16x16 unlockFocus];
       if (iconBitmap16x16) {
-        [self setIconFamilyElement:kSmall32BitData fromBitmapImageRep:iconBitmap16x16];
-        [self setIconFamilyElement:kSmall8BitData fromBitmapImageRep:iconBitmap16x16];
-        [self setIconFamilyElement:kSmall8BitMask fromBitmapImageRep:iconBitmap16x16];
-        [self setIconFamilyElement:kSmall1BitMask fromBitmapImageRep:iconBitmap16x16];
+        [self setIconFamilyElement:kIconServices16PixelDataARGB fromBitmapImageRep:iconBitmap16x16];
         [iconBitmap16x16 release];
       }
     }
