@@ -278,6 +278,7 @@ enum {
     NSImage* iconImage512x512;
     NSImage* iconImage256x256;
     NSImage* iconImage128x128;
+	NSImage* iconImage48x48;
     NSImage* iconImage32x32;
     NSImage* iconImage16x16;
     NSImage* bitmappedIconImage1024x1024;
@@ -285,6 +286,7 @@ enum {
     NSBitmapImageRep* iconBitmap512x512;
     NSBitmapImageRep* iconBitmap256x256;
     NSBitmapImageRep* iconBitmap128x128;
+	NSBitmapImageRep* iconBitmap48x48;
     NSBitmapImageRep* iconBitmap32x32;
     NSBitmapImageRep* iconBitmap16x16;
 
@@ -365,6 +367,22 @@ enum {
       }
     }
     
+	// Resample the 1024x1024 image to create a 48x48 pixel, 32-bit RGBA version,
+    // and use that as our "huge" (48x48) icon and 8-bit mask.
+    iconImage48x48 = [IconFamily resampleImage:bitmappedIconImage1024x1024 toIconWidth:48 usingImageInterpolation:imageInterpolation];
+    if (iconImage48x48) {
+		[iconImage48x48 lockFocus];
+		iconBitmap48x48 = [[NSBitmapImageRep alloc] initWithFocusedViewRect:NSMakeRect(0, 0, 48, 48)];
+		[iconImage48x48 unlockFocus];
+		if (iconBitmap48x48) {
+			[self setIconFamilyElement:kHuge32BitData fromBitmapImageRep:iconBitmap48x48];
+			[self setIconFamilyElement:kHuge8BitData fromBitmapImageRep:iconBitmap48x48];
+			[self setIconFamilyElement:kHuge8BitMask fromBitmapImageRep:iconBitmap48x48];
+			[self setIconFamilyElement:kHuge1BitMask fromBitmapImageRep:iconBitmap48x48];
+			[iconBitmap48x48 release];
+		}
+    }
+	
     // Resample the 1024x1024 image to create a 32x32 pixel, 32-bit RGBA version,
     // and use that as our "large" (32x32) icon and 8-bit mask.
     iconImage32x32 = [IconFamily resampleImage:bitmappedIconImage1024x1024 toIconWidth:32 usingImageInterpolation:imageInterpolation];
@@ -656,7 +674,10 @@ enum {
 	case kThumbnail8BitMask:
 	    hRawData = [IconFamily get8BitMaskFromBitmapImageRep:bitmapImageRep requiredPixelSize:128];
 	    break;
-	    
+	// 'ih48' 48x48 32-bit RGB image
+	case kHuge32BitData:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;
 	// 'il32' 32x32 32-bit RGB image
 	case kLarge32BitData:
 	    hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
