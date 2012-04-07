@@ -7,45 +7,40 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0515FC2E09BD137A00907DF2 /* AboutPanelController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0515FC2709BD137A00907DF2 /* AboutPanelController.m */; };
 		0515FC2F09BD137A00907DF2 /* IconFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = 0515FC2909BD137A00907DF2 /* IconFamily.m */; };
-		0515FC3009BD137A00907DF2 /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0515FC2B09BD137A00907DF2 /* MainController.m */; };
-		0515FC3109BD137A00907DF2 /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = 0515FC2D09BD137A00907DF2 /* NSString+CarbonFSRefCreation.m */; };
 		0515FC3309BD138B00907DF2 /* MarinFarm.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0515FC3209BD138B00907DF2 /* MarinFarm.jpg */; };
 		0515FC3509BD139300907DF2 /* MacOSXPublicBeta.icns in Resources */ = {isa = PBXBuildFile; fileRef = 0515FC3409BD139300907DF2 /* MacOSXPublicBeta.icns */; };
-		0515FC3E09BD13B100907DF2 /* AboutPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0515FC3A09BD13B100907DF2 /* AboutPanel.nib */; };
-		0515FC3F09BD13B100907DF2 /* SavePanelAccessoryView.nib in Resources */ = {isa = PBXBuildFile; fileRef = 0515FC3C09BD13B100907DF2 /* SavePanelAccessoryView.nib */; };
-		05FE35A509BD194C003CE2EE /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05FE35A409BD194C003CE2EE /* Carbon.framework */; };
-		8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 29B97318FDCFA39411CA2CEA /* MainMenu.nib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		FAD5D2F11530E8B400722EB8 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD5D2F01530E8B400722EB8 /* Carbon.framework */; };
+		FAD5D2F41530E8C000722EB8 /* NSString+CarbonFSRefCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D2F31530E8C000722EB8 /* NSString+CarbonFSRefCreation.m */; };
+		FAD5D2F61530EA0E00722EB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D2F51530EA0E00722EB8 /* MainMenu.xib */; };
+		FAD5D2F91530EA2700722EB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D2F81530EA2700722EB8 /* AppDelegate.m */; };
+		FAD5D2FB1530EACB00722EB8 /* appStore.icns in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D2FA1530EACB00722EB8 /* appStore.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0515FC2609BD137A00907DF2 /* AboutPanelController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AboutPanelController.h; sourceTree = SOURCE_ROOT; };
-		0515FC2709BD137A00907DF2 /* AboutPanelController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AboutPanelController.m; sourceTree = SOURCE_ROOT; };
 		0515FC2809BD137A00907DF2 /* IconFamily.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = IconFamily.h; sourceTree = SOURCE_ROOT; };
 		0515FC2909BD137A00907DF2 /* IconFamily.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = IconFamily.m; sourceTree = SOURCE_ROOT; };
-		0515FC2A09BD137A00907DF2 /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = SOURCE_ROOT; };
-		0515FC2B09BD137A00907DF2 /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = SOURCE_ROOT; };
-		0515FC2C09BD137A00907DF2 /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = "NSString+CarbonFSRefCreation.h"; sourceTree = SOURCE_ROOT; };
-		0515FC2D09BD137A00907DF2 /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = "NSString+CarbonFSRefCreation.m"; sourceTree = SOURCE_ROOT; };
 		0515FC3209BD138B00907DF2 /* MarinFarm.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = MarinFarm.jpg; sourceTree = SOURCE_ROOT; };
 		0515FC3409BD139300907DF2 /* MacOSXPublicBeta.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MacOSXPublicBeta.icns; sourceTree = SOURCE_ROOT; };
-		0515FC3B09BD13B100907DF2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/AboutPanel.nib; sourceTree = "<group>"; };
-		0515FC3D09BD13B100907DF2 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/SavePanelAccessoryView.nib; sourceTree = "<group>"; };
-		05FE35A409BD194C003CE2EE /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		29B97319FDCFA39411CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MainMenu.nib; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* MakeThumbnail_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MakeThumbnail_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* MakeThumbnail.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MakeThumbnail.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAD5D2F01530E8B400722EB8 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		FAD5D2F21530E8C000722EB8 /* NSString+CarbonFSRefCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CarbonFSRefCreation.h"; sourceTree = "<group>"; };
+		FAD5D2F31530E8C000722EB8 /* NSString+CarbonFSRefCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CarbonFSRefCreation.m"; sourceTree = "<group>"; };
+		FAD5D2F51530EA0E00722EB8 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		FAD5D2F71530EA2700722EB8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FAD5D2F81530EA2700722EB8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FAD5D2FA1530EACB00722EB8 /* appStore.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appStore.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,8 +48,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD5D2F11530E8B400722EB8 /* Carbon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				05FE35A509BD194C003CE2EE /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,14 +59,12 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				0515FC2609BD137A00907DF2 /* AboutPanelController.h */,
-				0515FC2709BD137A00907DF2 /* AboutPanelController.m */,
+				FAD5D2F21530E8C000722EB8 /* NSString+CarbonFSRefCreation.h */,
+				FAD5D2F31530E8C000722EB8 /* NSString+CarbonFSRefCreation.m */,
 				0515FC2809BD137A00907DF2 /* IconFamily.h */,
 				0515FC2909BD137A00907DF2 /* IconFamily.m */,
-				0515FC2A09BD137A00907DF2 /* MainController.h */,
-				0515FC2B09BD137A00907DF2 /* MainController.m */,
-				0515FC2C09BD137A00907DF2 /* NSString+CarbonFSRefCreation.h */,
-				0515FC2D09BD137A00907DF2 /* NSString+CarbonFSRefCreation.m */,
+				FAD5D2F71530EA2700722EB8 /* AppDelegate.h */,
+				FAD5D2F81530EA2700722EB8 /* AppDelegate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -79,7 +72,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				05FE35A409BD194C003CE2EE /* Carbon.framework */,
+				FAD5D2F01530E8B400722EB8 /* Carbon.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
 			name = "Linked Frameworks";
@@ -127,13 +120,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29B97318FDCFA39411CA2CEA /* MainMenu.nib */,
-				0515FC3A09BD13B100907DF2 /* AboutPanel.nib */,
-				0515FC3C09BD13B100907DF2 /* SavePanelAccessoryView.nib */,
+				FAD5D2FA1530EACB00722EB8 /* appStore.icns */,
 				0515FC3209BD138B00907DF2 /* MarinFarm.jpg */,
 				0515FC3409BD139300907DF2 /* MacOSXPublicBeta.icns */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				FAD5D2F51530EA0E00722EB8 /* MainMenu.xib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -175,7 +167,11 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MakeThumbnail" */;
 			compatibilityVersion = "Xcode 2.4";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
+			knownRegions = (
+				en,
+			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* MakeThumbnail */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -190,12 +186,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D11072A0486CEB800E47090 /* MainMenu.nib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				0515FC3309BD138B00907DF2 /* MarinFarm.jpg in Resources */,
 				0515FC3509BD139300907DF2 /* MacOSXPublicBeta.icns in Resources */,
-				0515FC3E09BD13B100907DF2 /* AboutPanel.nib in Resources */,
-				0515FC3F09BD13B100907DF2 /* SavePanelAccessoryView.nib in Resources */,
+				FAD5D2F61530EA0E00722EB8 /* MainMenu.xib in Resources */,
+				FAD5D2FB1530EACB00722EB8 /* appStore.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,46 +202,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				0515FC2E09BD137A00907DF2 /* AboutPanelController.m in Sources */,
 				0515FC2F09BD137A00907DF2 /* IconFamily.m in Sources */,
-				0515FC3009BD137A00907DF2 /* MainController.m in Sources */,
-				0515FC3109BD137A00907DF2 /* NSString+CarbonFSRefCreation.m in Sources */,
+				FAD5D2F41530E8C000722EB8 /* NSString+CarbonFSRefCreation.m in Sources */,
+				FAD5D2F91530EA2700722EB8 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		0515FC3A09BD13B100907DF2 /* AboutPanel.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0515FC3B09BD13B100907DF2 /* English */,
-			);
-			name = AboutPanel.nib;
-			sourceTree = SOURCE_ROOT;
-		};
-		0515FC3C09BD13B100907DF2 /* SavePanelAccessoryView.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0515FC3D09BD13B100907DF2 /* English */,
-			);
-			name = SavePanelAccessoryView.nib;
-			sourceTree = SOURCE_ROOT;
-		};
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				089C165DFE840E0CC02AAC07 /* English */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		29B97318FDCFA39411CA2CEA /* MainMenu.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				29B97319FDCFA39411CA2CEA /* English */,
-			);
-			name = MainMenu.nib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -283,13 +253,10 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-					x86_64,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
@@ -307,21 +274,18 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
-				"SDKROOT[arch=x86_64]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx;
+				"SDKROOT[arch=x86_64]" = macosx;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-					x86_64,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1)";
+				ARCHS_STANDARD_32_64_BIT_PRE_XCODE_3_1 = "x86_64 i386 ppc";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
-				GCC_VERSION = 4.0;
+				GCC_VERSION = "";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
@@ -340,8 +304,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = "$(DEVELOPER_SDK_DIR)/MacOSX10.4u.sdk";
-				"SDKROOT[arch=x86_64]" = "$(DEVELOPER_SDK_DIR)/MacOSX10.5.sdk";
+				SDKROOT = macosx;
+				"SDKROOT[arch=x86_64]" = macosx;
 				WARNING_CFLAGS = (
 					"-Wall",
 					"-Wextra",
