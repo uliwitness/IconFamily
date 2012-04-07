@@ -18,6 +18,7 @@
 		FAD5D2F61530EA0E00722EB8 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D2F51530EA0E00722EB8 /* MainMenu.xib */; };
 		FAD5D2F91530EA2700722EB8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FAD5D2F81530EA2700722EB8 /* AppDelegate.m */; };
 		FAD5D2FB1530EACB00722EB8 /* appStore.icns in Resources */ = {isa = PBXBuildFile; fileRef = FAD5D2FA1530EACB00722EB8 /* appStore.icns */; };
+		FAD5D2FD1530F0DA00722EB8 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FAD5D2FC1530F0DA00722EB8 /* Accelerate.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		FAD5D2F71530EA2700722EB8 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		FAD5D2F81530EA2700722EB8 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		FAD5D2FA1530EACB00722EB8 /* appStore.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = appStore.icns; sourceTree = "<group>"; };
+		FAD5D2FC1530F0DA00722EB8 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAD5D2FD1530F0DA00722EB8 /* Accelerate.framework in Frameworks */,
 				FAD5D2F11530E8B400722EB8 /* Carbon.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
@@ -72,6 +75,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FAD5D2FC1530F0DA00722EB8 /* Accelerate.framework */,
 				FAD5D2F01530E8B400722EB8 /* Carbon.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);

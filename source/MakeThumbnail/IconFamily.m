@@ -23,6 +23,7 @@
 
 #import "IconFamily.h"
 #import "NSString+CarbonFSRefCreation.h"
+#import <Accelerate/Accelerate.h>
 
 #if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_6
 // This is defined in 10.7 and beyond in IconStorage.h
@@ -31,22 +32,9 @@ enum {
 };
 #endif
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_4
-// This is defined in 10.5 and beyond in IconStorage.h
-enum {
-  kIconServices512PixelDataARGB = 'ic09' /* non-premultiplied 512x512 ARGB bitmap*/
-};
-#endif
-
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_3
-// This is defined in 10.4 and beyond in IconStorage.h
-enum {
-  kIconServices256PixelDataARGB = 'ic08' /* non-premultiplied 256x256 ARGB bitmap*/
-};
-#endif
-
 // Necessary on 10.5 for Preview's "New with Clipboard" menu item to see the IconFamily data.
 #define ICONFAMILY_UTI @"com.apple.icns"
+
 // Determined by using Pasteboard Manager to put com.apple.icns data on the clipboard. Alternatively, you can determine this by copying an application to the clipboard using the Finder (select an application and press cmd-C).
 #define ICONFAMILY_PBOARD_TYPE @"'icns' (CorePasteboardFlavorType 0x69636E73)"
 
@@ -446,9 +434,7 @@ enum {
     Handle hRawBitmapData;
     Handle hRawMaskData = NULL;
     OSType maskElementType;
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
 	NSBitmapFormat bitmapFormat = NSAlphaFirstBitmapFormat;
-#endif
     OSErr result;
     UInt32* pRawBitmapData;
     UInt32* pRawBitmapDataEnd;
@@ -457,7 +443,8 @@ enum {
 
     // Make sure elementType is a valid type that we know how to handle, and
     // figure out the dimensions and bit depth of the bitmap for that type.
-    switch (elementType) {
+    switch (elementType) 
+	{
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_7
 			// 'ic09' 1024x1024 32-bit RGB image
 	case kIconServices1024PixelDataARGB:
@@ -473,13 +460,31 @@ enum {
         break;
 #endif
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
 	// 'ic08' 256x256 32-bit ARGB image
 	case kIconServices256PixelDataARGB:
 		maskElementType = 0;
 		pixelsWide = 256;
 	    break;
-#endif
+			
+	case kIconServices128PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 128;
+		break;
+		
+	case kIconServices48PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 48;
+		break;
+	
+	case kIconServices32PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 32;
+		break;
+	
+	case kIconServices16PixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 16;
+		break;
 	    
 	// 'it32' 128x128 32-bit RGB image
 	case kThumbnail32BitData:
@@ -528,65 +533,24 @@ enum {
     }
     
     // The retrieved raw bitmap data is stored in memory as 32 bit per pixel, 8 bit per sample xRGB data.  (The sample order provided by IconServices is the same, regardless of whether we're running on a big-endian (PPC) or little-endian (Intel) architecture.)
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-    // With proper attention to byte order, we can fold the mask data into the color data in-place, producing ARGB data suitable for handing off to NSBitmapImageRep.
-#else
-    // With proper attention to byte order, we can fold the mask data into the color data in-place, producing RGBA data suitable for handing off to NSBitmapImageRep.
-#endif
-//    HLock( hRawBitmapData ); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
+
     pRawBitmapData = (UInt32*) *hRawBitmapData;
     pRawBitmapDataEnd = pRawBitmapData + pixelsWide * pixelsWide;
     if (hRawMaskData) {
-//        HLock( hRawMaskData ); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
+		
         pRawMaskData = (UInt8*) *hRawMaskData;
         while (pRawBitmapData < pRawBitmapDataEnd) {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-            // Convert the xRGB pixel data to ARGB.
-            //                                                          PowerPC         Intel
-            //                                                          -------         -----
-            // Bytes in memory are                                      x R G B         x R G B
-            // *pRawBitmapData loads as 32-bit word into register       xRGB            BGRx
-            // CFSwapInt32HostToBig() swaps this to                     xRGB            xRGB
-            // Loading *pRawMaskData and shifting left 24 bits yields   A000            A000
-            // Bitwise ORing these two words together yields            ARGB            ARGB
-            // CFSwapInt32BigToHost() swaps this to                     ARGB            BGRA
-            // Bytes in memory after they're stored as a 32-bit word    A R G B         A R G B
-            *pRawBitmapData = CFSwapInt32BigToHost((*pRawMaskData++ << 24) | CFSwapInt32HostToBig(*pRawBitmapData));
-#else
-            // Convert the xRGB pixel data to RGBA.
-            //                                                          PowerPC         Intel
-            //                                                          -------         -----
-            // Bytes in memory are                                      x R G B         x R G B
-            // *pRawBitmapData loads as 32-bit word into register       xRGB            BGRx
-            // CFSwapInt32HostToBig() swaps this to                     xRGB            xRGB
-            // Shifting left 8 bits yields ('0' denotes all zero bits)  RGB0            RGB0
-            // Bitwise ORing with *pRawMaskData byte yields             RGBA            RGBA
-            // CFSwapInt32BigToHost() swaps this to                     RGBA            ABGR
-            // Bytes in memory after they're stored as a 32-bit word    R G B A         R G B A
-            *pRawBitmapData = CFSwapInt32BigToHost((CFSwapInt32HostToBig(*pRawBitmapData) << 8) | *pRawMaskData++);
-#endif
+         
+			*pRawBitmapData = CFSwapInt32BigToHost((*pRawMaskData++ << 24) | CFSwapInt32HostToBig(*pRawBitmapData));
             ++pRawBitmapData;
+			
         }
-//        HUnlock( hRawMaskData ); // Handle-based memory isn't compacted anymore, so calling HLock()/HUnlock() is unnecessary.
+		
     } else {
         if(maskElementType) {
             // We SHOULD have a mask, but apparently not. Fake it with alpha=1.
             while (pRawBitmapData < pRawBitmapDataEnd) {
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
-                // Set alpha byte to 0xff.
-                //                                                                  PowerPC         Intel
-                //                                                                  -------         -----
-                // Bytes in memory are                                              x R G B         x R G B
-                // Writing a single 0xff byte ('1') at pRawBitmapData yields        1 R G B         1 R G B
                 *(unsigned char *)pRawBitmapData = 0xff;
-#else
-                // Set alpha byte to 0xff.
-                //                                                                  PowerPC         Intel
-                //                                                                  -------         -----
-                // Bytes in memory are                                              R G B x         R G B x
-                // Writing a single 0xff byte, 3 bytes past pRawBitmapData yields   R G B 1         R G B 1
-                *((unsigned char *)pRawBitmapData + 3) = 0xff;
-#endif
                 ++pRawBitmapData;
             }
         }
@@ -612,9 +576,7 @@ enum {
                         hasAlpha:YES
                         isPlanar:NO
                   colorSpaceName:NSDeviceRGBColorSpace // NOTE: is this right?
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_4
                     bitmapFormat:bitmapFormat
-#endif
                      bytesPerRow:0
                     bitsPerPixel:0] autorelease];
     pBitmapImageRepBitmapData = [bitmapImageRep bitmapData];
@@ -652,7 +614,8 @@ enum {
     Handle hRawData = NULL;
     OSErr result;
 
-    switch (elementType) {
+    switch (elementType)
+	{
 	// 'ic10' 1024x1024 32-bit ARGB image
 	case kIconServices1024PixelDataARGB:
 		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:1024];
@@ -668,6 +631,26 @@ enum {
         hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:256];
         break;
 
+	// 'ic07' 128x128 32-bit ARGB image
+	case kIconServices128PixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:128];
+		break;
+
+	// 'ic06' 256x256 32-bit ARGB image
+	case kIconServices48PixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:48];
+		break;
+		
+	// 'ic05' 256x256 32-bit ARGB image
+	case kIconServices32PixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
+		break;
+	
+	// 'ic04' 256x256 32-bit ARGB image
+	case kIconServices16PixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:16];
+		break;
+	
     // 'it32' 128x128 32-bit RGB image
 	case kThumbnail32BitData:
 	    hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:128];
@@ -1273,11 +1256,6 @@ enum {
     Handle hRawData;
     unsigned char* pRawData;
     Size rawDataSize;
-    unsigned char* pSrc;
-    unsigned char* pDest;
-    int x, y;
-    unsigned char alphaByte;
-    float oneOverAlpha;
     
     // Get information about the bitmapImageRep.
     long pixelsWide      = [bitmapImageRep pixelsWide];
@@ -1286,16 +1264,11 @@ enum {
     long samplesPerPixel = [bitmapImageRep samplesPerPixel];
     long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
     BOOL isPlanar       = [bitmapImageRep isPlanar];
-    long bytesPerRow     = [bitmapImageRep bytesPerRow];
-    unsigned char* bitmapData = [bitmapImageRep bitmapData];
 
     // Make sure bitmap has the required dimensions.
     if (pixelsWide != requiredPixelSize || pixelsHigh != requiredPixelSize)
 	return NULL;
 	
-    // So far, this code only handles non-planar 32-bit RGBA and 24-bit RGB source bitmaps.
-    // This could be made more flexible with some additional programming to accommodate other possible
-    // formats...
     if (isPlanar)
 	{
 		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to isPlanar == YES");
@@ -1307,50 +1280,116 @@ enum {
 		return NULL;
 	}
 
-	if (((samplesPerPixel == 3) && (bitsPerPixel == 24)) || ((samplesPerPixel == 4) && (bitsPerPixel == 32)))
-	{
+	if (((samplesPerPixel == 3) && (bitsPerPixel == 24)) || ((samplesPerPixel == 4) && (bitsPerPixel == 32))) {
 		rawDataSize = pixelsWide * pixelsHigh * 4;
 		hRawData = NewHandle( rawDataSize );
 		if (hRawData == NULL)
 			return NULL;
 		pRawData = (unsigned char*) *hRawData;
-	
-		pDest = pRawData;
+				
+		CGImageRef image = bitmapImageRep.CGImage;
+		
+		CGImageAlphaInfo alphaInfo = CGImageGetAlphaInfo(image);
+		
+		NSInteger width = CGImageGetWidth(image);
+		NSInteger height = CGImageGetHeight(image);
+		
+		
+		CGDataProviderRef provider = CGImageGetDataProvider(image);
+		CFDataRef data = CGDataProviderCopyData(provider);
+		
+		UInt8* bytes = malloc(width * height * 4);
+		CFDataGetBytes(data, CFRangeMake(0, CFDataGetLength(data)), bytes);
+		CFRelease(data);
+		
+		BOOL alphaFirst    = (alphaInfo == kCGImageAlphaFirst || alphaInfo == kCGImageAlphaPremultipliedFirst);
+		BOOL premultiplied = (alphaInfo == kCGImageAlphaPremultipliedFirst || alphaInfo == kCGImageAlphaPremultipliedLast);
+		BOOL little        = (CGImageGetBitmapInfo(image) == kCGBitmapByteOrder32Little);
 		
 		if (bitsPerPixel == 32) {
-			for (y = 0; y < pixelsHigh; y++) {
-				pSrc = bitmapData + y * bytesPerRow;
-					for (x = 0; x < pixelsWide; x++) {
-						// Each pixel is 3 bytes of RGB data, followed by 1 byte of
-						// alpha.  The RGB values are premultiplied by the alpha (so
-						// that Quartz can save time when compositing the bitmap to a
-						// destination), and we undo this premultiplication (with some
-						// lossiness unfortunately) when retrieving the bitmap data.
-						*pDest++ = alphaByte = *(pSrc+3);
-						if (alphaByte) {
-							oneOverAlpha = 255.0f / (float)alphaByte;
-							*pDest++ = *(pSrc+0) * oneOverAlpha;
-							*pDest++ = *(pSrc+1) * oneOverAlpha;
-							*pDest++ = *(pSrc+2) * oneOverAlpha;
-						} else {
-							*pDest++ = 0;
-							*pDest++ = 0;
-							*pDest++ = 0;
-						}
-						pSrc+=4;
+			
+			vImage_Buffer src;
+			src.data = (void*)bytes;
+			src.rowBytes = 4 * width;
+			src.width = width;
+			src.height = height;
+			
+			vImage_Buffer dest;
+			dest.data = pRawData;
+			dest.rowBytes = 4 * width;
+			dest.width = width;
+			dest.height = height;
+						
+			uint8_t permuteMap[4];
+			if (alphaFirst) {
+				if (little) {
+					// BGRA to ARGB
+					permuteMap[0] = 3;
+					permuteMap[1] = 2;
+					permuteMap[2] = 1;
+					permuteMap[3] = 0;
+				} else {
+					// ARGB to ARGB
+					permuteMap[0] = 0;
+					permuteMap[1] = 1;
+					permuteMap[2] = 2;
+					permuteMap[3] = 3;
+				}
+			} else {
+				if (little) {
+					// ABGR to ARGB
+					permuteMap[0] = 0;
+					permuteMap[1] = 3;
+					permuteMap[2] = 2;
+					permuteMap[3] = 1;
+				} else {
+					// RGBA to ARGB
+					permuteMap[0] = 3;
+					permuteMap[1] = 0;
+					permuteMap[2] = 1;
+					permuteMap[3] = 2;
 				}
 			}
+			
+			vImagePermuteChannels_ARGB8888(&src, &dest, permuteMap, 0);
+			
+			if (!premultiplied) {
+				vImageUnpremultiplyData_ARGB8888(&dest, &dest, 0);
+			}
+			
+			
 		} else if (bitsPerPixel == 24) {
-			for (y = 0; y < pixelsHigh; y++) {
-				pSrc = bitmapData + y * bytesPerRow;
-				for (x = 0; x < pixelsWide; x++) {
-					*pDest++ = 0xFF;
-					*pDest++ = *pSrc++;
-					*pDest++ = *pSrc++;
-					*pDest++ = *pSrc++;
-				}
+			
+			vImage_Buffer src;
+			src.data = (void*)bytes;
+			src.rowBytes = 3 * width;
+			src.width = width;
+			src.height = height;
+			
+			vImage_Buffer dest;
+			dest.data = pRawData;
+			dest.rowBytes = 4 * width;
+			dest.width = width;
+			dest.height = height;
+			
+			vImageConvert_RGB888toARGB8888(&src, NULL, 0xFFFF, &dest, false, 0);
+			
+			uint8_t permuteMap[4];
+			if (little) { // BGR to RGB
+				permuteMap[0] = 2;
+				permuteMap[1] = 1;
+				permuteMap[2] = 0;
+			} else {
+				permuteMap[0] = 0;
+				permuteMap[1] = 1;
+				permuteMap[2] = 2;
 			}
+			
+			vImagePermuteChannels_ARGB8888(&dest, &dest, permuteMap, 0);
+			
 		}
+		
+		free(bytes);
 	}
 	else
 	{
@@ -1362,7 +1401,7 @@ enum {
 }
 
 + (Handle) get8BitDataFromBitmapImageRep:(NSBitmapImageRep*)bitmapImageRep requiredPixelSize:(int)requiredPixelSize
-{
+{	
     Handle hRawData;
     unsigned char* pRawData;
     Size rawDataSize;
@@ -1412,9 +1451,9 @@ enum {
 			for (y = 0; y < pixelsHigh; y++) {
 				pSrc = bitmapData + y * bytesPerRow;
 				for (x = 0; x < pixelsWide; x++) {
-					cgCol.red = ((float)*(pSrc)) / 255;
-					cgCol.green = ((float)*(pSrc+1)) / 255;
-					cgCol.blue = ((float)*(pSrc+2)) / 255;
+					cgCol.red = ((float)*(pSrc+1)) / 255;
+					cgCol.green = ((float)*(pSrc+2)) / 255;
+					cgCol.blue = ((float)*(pSrc+3)) / 255;
 					
 					*pDest++ = (0 << 24) | ((int)cgCol.red << 16) | ((int)cgCol.green << 8) | (int)cgCol.blue;
 	
