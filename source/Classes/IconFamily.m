@@ -1405,7 +1405,7 @@
 			
 			vImagePermuteChannels_ARGB8888(&src, &dest, permuteMap, 0);
 			
-			if (!premultiplied) {
+			if (premultiplied) {
 				vImageUnpremultiplyData_ARGB8888(&dest, &dest, 0);
 			}
 			
