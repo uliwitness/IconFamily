@@ -25,13 +25,6 @@
 #import "NSString+CarbonFSRefCreation.h"
 #import <Accelerate/Accelerate.h>
 
-#if MAC_OS_X_VERSION_MAX_ALLOWED <= MAC_OS_X_VERSION_10_6
-// This is defined in 10.7 and beyond in IconStorage.h
-enum {
-	kIconServices1024PixelDataARGB = 'ic10' /* non-premultiplied 1024x1024 ARGB bitmap*/
-};
-#endif
-
 // Necessary on 10.5 for Preview's "New with Clipboard" menu item to see the IconFamily data.
 #define ICONFAMILY_UTI @"com.apple.icns"
 
@@ -435,13 +428,32 @@ enum {
     // figure out the dimensions and bit depth of the bitmap for that type.
     switch (elementType) 
 	{
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_7
-			// 'ic09' 1024x1024 32-bit RGB image
-	case kIconServices1024PixelDataARGB:
+    // 'ic10' 1024x1024 32-bit RGB image
+    case kIconServices512RetinaPixelDataARGB:
 		maskElementType = 0;
 		pixelsWide = 1024;
 		break;
-#endif
+    // 'ic14' 512x512 32-bit RGB image
+    case kIconServices256RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 512;
+		break;
+    // 'ic13' 256x256 32-bit RGB image
+    case kIconServices128RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 256;
+		break;
+    // 'ic12' 64x64 32-bit RGB image
+    case kIconServices32RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 64;
+		break;
+    // 'ic11' 32x32 32-bit RGB image
+    case kIconServices16RetinaPixelDataARGB:
+		maskElementType = 0;
+		pixelsWide = 32;
+		break;
+
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_5
     // 'ic09' 512x512 32-bit RGB image
     case kIconServices512PixelDataARGB:
@@ -607,8 +619,28 @@ enum {
     switch (elementType)
 	{
 	// 'ic10' 1024x1024 32-bit ARGB image
-	case kIconServices1024PixelDataARGB:
+	case kIconServices512RetinaPixelDataARGB:
 		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:1024];
+		break;
+        
+    // 'ic14' 512x512 32-bit ARGB image
+    case kIconServices256RetinaPixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:512];
+		break;
+        
+    // 'ic13' 256x256 32-bit ARGB image
+    case kIconServices128RetinaPixelDataARGB:
+        hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:256];
+		break;
+        
+    // 'ic12' 64x64 32-bit ARGB image
+    case kIconServices32RetinaPixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:64];
+		break;
+        
+    // 'ic11' 32x32 32-bit ARGB image
+    case kIconServices16RetinaPixelDataARGB:
+		hRawData = [IconFamily get32BitDataFromBitmapImageRep:bitmapImageRep requiredPixelSize:32];
 		break;
 
 	// 'ic09' 512x512 32-bit ARGB image

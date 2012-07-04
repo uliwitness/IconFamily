@@ -38,6 +38,14 @@
 // You can also write an icon family to an .icns file using the -writeToFile:
 // method.
 
+enum {
+	kIconServices512RetinaPixelDataARGB = 'ic10', /* non-premultiplied 1024x1024 ARGB bitmap*/
+    kIconServices256RetinaPixelDataARGB = 'ic14', /* non-premultiplied 512x512 ARGB bitmap*/
+    kIconServices128RetinaPixelDataARGB = 'ic13', /* non-premultiplied 256x256 ARGB bitmap*/
+    kIconServices32RetinaPixelDataARGB  = 'ic12', /* non-premultiplied 64x64 ARGB bitmap*/
+    kIconServices16RetinaPixelDataARGB  = 'ic11'  /* non-premultiplied 32x32 ARGB bitmap*/
+};
+
 @interface IconFamily : NSObject <NSPasteboardReading, NSPasteboardWriting>
 {
     IconFamilyHandle hIconFamily;
