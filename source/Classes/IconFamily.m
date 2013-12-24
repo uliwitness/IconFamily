@@ -413,7 +413,7 @@
 - (NSBitmapImageRep*) bitmapImageRepWithAlphaForIconFamilyElement:(OSType)elementType;
 {
     NSBitmapImageRep* bitmapImageRep;
-    int pixelsWide;
+    NSInteger pixelsWide;
     Handle hRawBitmapData;
     Handle hRawMaskData = NULL;
     OSType maskElementType;
@@ -769,10 +769,15 @@
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path
 {
-    return( [self setAsCustomIconForFile:path withCompatibility:NO] );
+    return( [self setAsCustomIconForFile:path withCompatibility:NO error:NULL] );
 }
 
 - (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat
+{
+    return( [self setAsCustomIconForFile:path withCompatibility:NO error:NULL] );
+}
+
+- (BOOL) setAsCustomIconForFile:(NSString*)path withCompatibility:(BOOL)compat error:(NSError **)error
 {
     FSRef targetFileFSRef;
     FSRef parentDirectoryFSRef;
@@ -785,7 +790,7 @@
 	NSString *parentDirectory;
 	
     // Before we do anything, get the original modification time for the target file.
-    NSDate* modificationDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil] objectForKey:NSFileModificationDate];
+    NSDate* modificationDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path error:error] objectForKey:NSFileModificationDate];
 
 	if ([path isAbsolutePath])
 		parentDirectory = [path stringByDeletingLastPathComponent];
@@ -973,10 +978,15 @@
 
 - (BOOL) setAsCustomIconForDirectory:(NSString*)path
 {
-    return [self setAsCustomIconForDirectory:path withCompatibility:NO];
+    return [self setAsCustomIconForDirectory:path withCompatibility:NO error:NULL];
 }
 
 - (BOOL) setAsCustomIconForDirectory:(NSString*)path withCompatibility:(BOOL)compat
+{
+    return [self setAsCustomIconForDirectory:path withCompatibility:NO error:NULL];
+}
+
+- (BOOL) setAsCustomIconForDirectory:(NSString*)path withCompatibility:(BOOL)compat error:(NSError **)error
 {
     NSFileManager *fm = [NSFileManager defaultManager];
     BOOL isDir;
@@ -1003,7 +1013,7 @@
     iconrPath = [path stringByAppendingPathComponent:@"Icon\r"];
     if( [fm fileExistsAtPath:iconrPath] )
     {
-        if( ![fm removeItemAtPath:iconrPath error:nil] )
+        if( ![fm removeItemAtPath:iconrPath error:error] )
             return NO;
     }
     if( ![iconrPath getFSRef:&iconrFSRef createFileIfNecessary:YES] )
@@ -1145,6 +1155,11 @@
 
 + (BOOL) removeCustomIconFromDirectory:(NSString*)path
 {
+    return( [self removeCustomIconFromDirectory:path error:NULL] );
+}
+
++ (BOOL) removeCustomIconFromDirectory:(NSString*)path error:(NSError **)error
+{
     FSRef targetFolderFSRef;
     if( [path getFSRef:&targetFolderFSRef createFileIfNecessary:NO] ) {
         OSStatus result;
@@ -1175,8 +1190,8 @@
         if (result != noErr)
             return NO;
     }
-
-    if( ! [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:@"Icon\r"] error:nil] )
+    
+    if( ! [[NSFileManager defaultManager] removeItemAtPath:[path stringByAppendingPathComponent:@"Icon\r"] error:error] )
         return NO;
 	
     return YES;
@@ -1310,12 +1325,12 @@
     Size rawDataSize;
     
     // Get information about the bitmapImageRep.
-    long pixelsWide      = [bitmapImageRep pixelsWide];
-    long pixelsHigh      = [bitmapImageRep pixelsHigh];
-    long bitsPerSample   = [bitmapImageRep bitsPerSample];
-    long samplesPerPixel = [bitmapImageRep samplesPerPixel];
-    long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
-    BOOL isPlanar       = [bitmapImageRep isPlanar];
+    NSInteger pixelsWide      = [bitmapImageRep pixelsWide];
+    NSInteger pixelsHigh      = [bitmapImageRep pixelsHigh];
+    NSInteger bitsPerSample   = [bitmapImageRep bitsPerSample];
+    NSInteger samplesPerPixel = [bitmapImageRep samplesPerPixel];
+    NSInteger bitsPerPixel    = [bitmapImageRep bitsPerPixel];
+    BOOL isPlanar	          = [bitmapImageRep isPlanar];
 
     // Make sure bitmap has the required dimensions.
     if (pixelsWide != requiredPixelSize || pixelsHigh != requiredPixelSize)
@@ -1328,7 +1343,7 @@
 	}
     if (bitsPerSample != 8)
 	{
-		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %ld", bitsPerSample);
+		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %ld", (long)bitsPerSample);
 		return NULL;
 	}
 
@@ -1424,7 +1439,7 @@
 			dest.width = width;
 			dest.height = height;
 			
-			vImageConvert_RGB888toARGB8888(&src, NULL, 0xFFFF, &dest, false, 0);
+			vImageConvert_RGB888toARGB8888(&src, NULL, (Pixel_8)0xFFFF, &dest, false, 0);
 			
 			uint8_t permuteMap[4];
 			if (little) { // BGR to RGB
@@ -1445,7 +1460,8 @@
 	}
 	else
 	{
-		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %ld, bitsPerPixel == %ld", samplesPerPixel, bitsPerPixel);
+		NSLog(@"get32BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %ld, bitsPerPixel == %ld",
+			  (long)samplesPerPixel, (long)bitsPerPixel);
 		return NULL;
 	}
 
@@ -1462,13 +1478,13 @@
     int x, y;
 	
     // Get information about the bitmapImageRep.
-    long pixelsWide      = [bitmapImageRep pixelsWide];
-    long pixelsHigh      = [bitmapImageRep pixelsHigh];
-    long bitsPerSample   = [bitmapImageRep bitsPerSample];
-    long samplesPerPixel = [bitmapImageRep samplesPerPixel];
-    long bitsPerPixel    = [bitmapImageRep bitsPerPixel];
-    BOOL isPlanar       = [bitmapImageRep isPlanar];
-    long bytesPerRow     = [bitmapImageRep bytesPerRow];
+    NSInteger pixelsWide      = [bitmapImageRep pixelsWide];
+    NSInteger pixelsHigh      = [bitmapImageRep pixelsHigh];
+    NSInteger bitsPerSample   = [bitmapImageRep bitsPerSample];
+    NSInteger samplesPerPixel = [bitmapImageRep samplesPerPixel];
+    NSInteger bitsPerPixel    = [bitmapImageRep bitsPerPixel];
+    BOOL isPlanar             = [bitmapImageRep isPlanar];
+    NSInteger bytesPerRow     = [bitmapImageRep bytesPerRow];
     unsigned char* bitmapData = [bitmapImageRep bitmapData];
     
     // Make sure bitmap has the required dimensions.
@@ -1484,7 +1500,8 @@
 	}
     if (bitsPerSample != 8)
 	{
-		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %ld", bitsPerSample);
+		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to bitsPerSample == %ld",
+			  (long)bitsPerSample);
 		return NULL;
 	}
 	
@@ -1528,7 +1545,8 @@
 	}
 	else
 	{
-		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %ld, bitsPerPixel == %ld", samplesPerPixel, bitsPerPixel);
+		NSLog(@"get8BitDataFromBitmapImageRep:requiredPixelSize: returning NULL due to samplesPerPixel == %ld, bitsPerPixel == %ld",
+			  (long)samplesPerPixel, (long)bitsPerPixel);
 		return NULL;
 	}
 	
