@@ -23,7 +23,8 @@
     // Check whether the file exists already.  If not, create an empty file if requested.
     if (![fileManager fileExistsAtPath:self]) {
         if (createFile) {
-            if (![@"" writeToFile:self atomically:YES]) {
+			NSString *emptyString = @"";
+            if (![emptyString writeToFile:self atomically:YES encoding:NSUTF8StringEncoding error:NULL]) {
                 return NO;
             }
         } else {
