@@ -1252,6 +1252,8 @@
     NSSize size, pixelSize, newSize;
     NSRect iconRect;
     NSRect targetRect;
+    
+    iconWidth = iconWidth / [[NSScreen mainScreen] backingScaleFactor];
 
     // Create a working copy of the image and scale its size down to fit in
     // the square area of the icon.
@@ -1371,7 +1373,7 @@
 		
 		BOOL alphaFirst    = (alphaInfo == kCGImageAlphaFirst || alphaInfo == kCGImageAlphaPremultipliedFirst);
 		BOOL premultiplied = (alphaInfo == kCGImageAlphaPremultipliedFirst || alphaInfo == kCGImageAlphaPremultipliedLast);
-		BOOL little        = (CGImageGetBitmapInfo(image) == kCGBitmapByteOrder32Little);
+        BOOL little        = YES; //(CGImageGetBitmapInfo(image) == kCGBitmapByteOrder32Little);
 		
 		if (bitsPerPixel == 32) {
 			

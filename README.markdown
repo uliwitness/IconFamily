@@ -4,6 +4,11 @@ by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven J
 
 ##Modifications
 
+This fork of IconFamily from Alex Zielenski's fork adds the following:
+
+* Fixed broken alpha channel when writing icons to icns file
+* Fixed issues where empty icns files were being generated on Retina macs
+
 This fork of IconFamily by **Alex Zielenski** adds the following:
 
 * Usage of ```kIconServices[size]PixelDataARGB``` types
