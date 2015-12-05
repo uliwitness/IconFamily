@@ -1,6 +1,6 @@
 #IconFamily class
 
-by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, Elliot Glaysher, and Dave MacLachlan
+by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, Elliot Glaysher, Dave MacLachlan, and Sveinbjorn Thordarson
 
 ##Modifications
 
@@ -8,6 +8,7 @@ This fork of IconFamily from Alex Zielenski's fork adds the following:
 
 * Fixed broken alpha channel when writing icons to icns file
 * Fixed issues where empty icns files were being generated on Retina macs
+* Made compatible with ARC (while remaining usable in non-ARC projects)
 
 This fork of IconFamily by **Alex Zielenski** adds the following:
 
