@@ -1,8 +1,14 @@
-#IconFamily class
+# IconFamily class
 
-by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, Elliot Glaysher, and Dave MacLachlan
+by Troy Stephens, Thomas Schnitzer, David Remahl, Nathan Day, Ben Haller, Sven Janssen, Peter Hosey, Conor Dearden, Elliot Glaysher, Dave MacLachlan, and Sveinbjorn Thordarson
 
-##Modifications
+## Modifications
+
+This fork of IconFamily from Alex Zielenski's fork by Sveinbjorn Thordarson adds the following:
+
+* Fixed broken alpha channel when writing icons to icns file
+* Fixed issues where empty icns files were being generated on Retina macs
+* Made compatible with ARC (while remaining usable in non-ARC projects)
 
 This fork of IconFamily by **Alex Zielenski** adds the following:
 
@@ -12,7 +18,7 @@ This fork of IconFamily by **Alex Zielenski** adds the following:
 * Lossless encoding using the Accelerate APIs for 32 bit and 24 bit types
 * Implementation of ```NSPasteboardReading``` and ```NSPasteboardWriting```
 
-##Purpose
+## Purpose
 
 "IconFamily" is a Cocoa/Objective-C wrapper for Mac OS X Icon Services' "IconFamily" data type. Its main purpose is to enable Cocoa applications to easily assign custom file icons from NSImage instances. Using the IconFamily class you can:
 
@@ -24,17 +30,17 @@ This fork of IconFamily by **Alex Zielenski** adds the following:
 
 The IconFamily code started out as a small experiment that yielded a modest bit of code that has since found its way into a gratifying number of applications. It's extensively commented, so extending it further and fixing problems should be pretty easy. I welcome contributions, suggestions, and feedback that will help to improve it further.
 
-##License
+## License
 
 The IconFamily source code is released under The MIT License, which permits commercial as well as non-commercial use.
 
-##Download
+## Download
 
 Get the latest complete source code at sourceforge.
 
 There is reference documentation for the IconFamily class on the sourceforge project page.
 
-##Credits/Contributors
+## Credits/Contributors
 
 I'm grateful to a number of talented and generous people for enhancements, bug fixes, and feedback that have helped improve the IconFamily code over the years. Thanks, guys!
 
